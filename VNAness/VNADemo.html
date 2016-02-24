@@ -51,7 +51,7 @@
 			var loader = new THREE.OBJLoader();
 			loader.load("laptop-bottom.obj", 
 	          	function ( obj ) {
-					var xScale = 3;
+					var xScale = 1.5;
  					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
 					obj.position.y = -2;	
 	          		objLoaded = obj;
@@ -59,30 +59,42 @@
 	          	});
 			loader.load("i7.obj", 
 	          	function ( obj ) {
-					var xScale = 1;
+					var xScale = 2.75;
  					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-	          		obj.position.y = 1.5;
-					obj.position.x = 8.25;
-					obj.position.z = -1;
+	          		obj.position.y = 0.0;
+					obj.position.x = 6.5;
+					obj.position.z = 9;
+					objLoaded += obj;
+	              	scene.add( obj );
+	          	});
+			loader.load("gpu.obj", 
+	          	function ( obj ) {
+					var xScale = 2.75;
+ 					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
+	          		obj.position.y = 0.0;
+					obj.position.x = 10.5;
+					obj.position.z = 9;
 					objLoaded += obj;
 	              	scene.add( obj );
 	          	});
 			loader.load("Motherboard.obj", 
 	          	function ( obj ) {
-					var xScale = 0.1;
+					var xScale = 1.5;
  					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-	          		obj.position.y = 1;
+	          		obj.position.y = 0;
+					obj.position.z = 7;
+					obj.position.x = 6;
 					objLoaded += obj;
 	              	scene.add( obj );
 	          	});
-			loader.load("laptop-top.obj", 
-	          	function ( obj ) {
-					var xScale = 3;
- 					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-	          		obj.position.y = 5;	
-					objLoaded += obj;
-	              	scene.add( obj );
-	          	});
+//			loader.load("laptop-top.obj", 
+//	          	function ( obj ) {
+//					var xScale = 3;
+// 					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
+//	          		obj.position.y = -.25;	
+//					objLoaded += obj;
+//	              	scene.add( obj );
+//	          	});
 		}
 		
 		function init() {
@@ -102,7 +114,7 @@
 
 	    	// Add OrbitControls so that we can pan around with the mouse.
 		    controls = new THREE.OrbitControls(camera, renderer.domElement);
-
+		    controls.target.set(0,0,0);
 			document.body.appendChild( renderer.domElement );
 
 		}
