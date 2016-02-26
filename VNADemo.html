@@ -1,0 +1,165 @@
+<html>
+	<head>
+		<title>VonNeumann demo app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+
+		<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+		<script src='threeJS/three.js'></script>
+		<script src='threeJS/OrbitControls.js'></script>
+		<script src='threeJS/OBJLoader.js'></script>
+        <script src='controls.js'></script>
+		<script>
+
+		var scene, camera, secondCamera, renderer;
+		var geometry, material, mesh;
+		var objectLoaded;
+		var factor = -0.01;
+        var enableViewPort = false;
+
+		init();
+		animate();
+
+		function threePointLight() {
+
+			var directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
+			directionalLight.position.set(1, 1, 1).normalize();
+			directionalLight.intensity = 1.0;
+			scene.add( directionalLight );
+
+			directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
+			directionalLight.position.set(-1, 0.6, 0.5).normalize();
+			directionalLight.intensity = 0.5;
+			scene.add(directionalLight);
+
+			directionalLight = new THREE.DirectionalLight();
+			directionalLight.position.set(-0.3, 0.6, -0.8).normalize( 0xb8b8b8 );
+			directionalLight.intensity = 0.45;
+			scene.add(directionalLight);
+
+		}
+
+		function loadObject() {
+//			var loader = new THREE.ObjectLoader();
+//			loader.load("./laptop.json",
+//	          	function ( obj ) {
+//	          		objLoaded = obj;
+//	              	scene.add( obj );
+//	          	});
+			var loader = new THREE.OBJLoader();
+			loader.load("laptop-bottom.obj",
+	          	function ( obj ) {
+					var xScale = 1.5;
+ 					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
+					obj.position.y = -2;
+	          		objLoaded = obj;
+	              	scene.add( obj );
+	          	});
+			loader.load("i7.obj",
+	          	function ( obj ) {
+					var xScale = 2.75;
+ 					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
+	          		obj.position.y = 0.0;
+					obj.position.x = 6.5;
+					obj.position.z = 9;
+					objLoaded += obj;
+	              	scene.add( obj );
+	          	});
+			loader.load("gpu.obj",
+	          	function ( obj ) {
+					var xScale = 2.75;
+ 					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
+	          		obj.position.y = 0.0;
+					obj.position.x = 10.5;
+					obj.position.z = 9;
+					objLoaded += obj;
+                    //zoom(obj);
+	              	scene.add( obj );
+	          	});
+			loader.load("Motherboard.obj",
+	          	function ( obj ) {
+					var xScale = 1.5;
+ 					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
+	          		obj.position.y = 0;
+					obj.position.z = 7;
+					obj.position.x = 6;
+					objLoaded += obj;
+	              	scene.add( obj );
+	          	});
+//			loader.load("laptop-top.obj",
+//	          	function ( obj ) {
+//					var xScale = 3;
+// 					obj.scale.x = obj.scale.y = obj.scale.z = xScale;
+//	          		obj.position.y = -.25;
+//					objLoaded += obj;
+//	              	scene.add( obj );
+//	          	});
+		}
+
+		function init() {
+
+			scene = new THREE.Scene();
+
+			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+			camera.position.z = -30;
+
+            secondCamera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 4000);
+
+			loadObject();
+			threePointLight();
+
+			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true	} );
+			renderer.setClearColor( 0x000000, 1 );
+			renderer.setPixelRatio( window.devicePixelRatio );
+			renderer.setSize( window.innerWidth, window.innerHeight );
+            renderer.autoClear = false;
+
+	    	// Add OrbitControls so that we can pan around with the mouse.
+		    controls = new THREE.OrbitControls(camera, renderer.domElement);
+		    controls.target.set(0,0,0);
+			document.body.appendChild( renderer.domElement );
+
+		}
+
+		// This function is called many times a second.  You do anything that
+		// needs to be updated, changed, moved here
+		function animate() {
+
+			requestAnimationFrame( animate );
+
+            renderer.clear();
+
+			// This is just for the box (only for this example)
+//			mesh.rotation.x += 0.01;
+//			mesh.rotation.y += 0.02;
+//
+//			objectLoaded.rotation.x += 0.01;
+//			objectLoaded.rotation.y += 0.02;
+////
+//			objTieBig.rotation.x += 0.02;
+//			objTieBig.rotation.y += 0.01;
+
+			// must do these two statements
+
+            if(enableViewPort) {
+                renderer.setViewport(0, 0, 0.5 * innerWidth, innerHeight);
+                renderer.render( scene, camera );
+
+                renderer.setViewport( 0.75 * innerWidth, 0, 0.25 * innerWidth, 0.25 * innerHeight);
+                renderer.render( scene, secondCamera);
+            }
+            else {
+                renderer.render( scene, camera);
+            }
+			controls.update();
+
+		}
+
+		</script>
+
+	</body>
+</html>
