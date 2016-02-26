@@ -1,33 +1,30 @@
 function expand(var percent, var parts) {
-    for (var part in parts) {
-
-    }
-}
-
-function zoom() {
+    for (var part in parts)
+    objTop.position.y = 10 * percent;
+    objBottom.position.y = 10 * percent;
 
 }
 
 function rotate(var degree, var parts) {
     for (var part in parts) {
-        part.rotation.z = degree * Math.PI / 180;
+        part.rotation.y = degree * Math.PI / 180;
     }
 }
 
 function select(var part) {
-    highlight();
-    zoom();
-    display();
+    highlight(part);
+    zoom(part);
+    display(part);
 }
 
-function highlight() {
+function highlight(var part) {
     //Change color
 }
 
-function zoom() {
+function zoom(var part) {
     //Enable second view port
 }
 
-function display() {
+function display(var part) {
     //Display description
 }
