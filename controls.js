@@ -15,7 +15,19 @@ function rotate(var degree, var parts) {
 }
 
 function select(var part) {
-    highlight(item);
-    zoom(item);
-    display(item);
+    highlight();
+    zoom();
+    display();
+}
+
+function highlight() {
+    //Change color
+}
+
+function zoom() {
+    //Enable second view port
+}
+
+function display() {
+    //Display description
 }
