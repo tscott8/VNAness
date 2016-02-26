@@ -22,7 +22,10 @@ function highlight(var part) {
 }
 
 function zoom(var part) {
-    //Enable second view port
+    enableViewPort = true;
+    secondCamera.position.copy(part.position);
+    secondCamera.lookAt(part.position.x, part.position.y, part.position.z);
+    secondCamera.position.z += 5;
 }
 
 function display(var part) {
