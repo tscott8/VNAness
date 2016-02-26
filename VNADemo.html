@@ -14,10 +14,11 @@
 		<script src='threeJS/OBJLoader.js'></script>
 		<script>
 
-		var scene, camera, renderer;
+		var scene, camera, secondCamera, renderer;
 		var geometry, material, mesh;
 		var objectLoaded;
 		var factor = -0.01;
+        var enableViewPort = false;
 
 		init();
 		animate();
@@ -104,6 +105,8 @@
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 			camera.position.z = -30;
 
+            secondCamera = new THREE.PerspectiveCamera( 75, (window.innerWidth / window.innerHeight, 1, 10000);
+
 			loadObject();
 			threePointLight();
 
@@ -137,6 +140,10 @@
 
 			// must do these two statements
 			renderer.render( scene, camera );
+
+            if(enableViewPort) {
+                renderer.render( scene, secondCamera);
+            }
 			controls.update();
 
 		}
