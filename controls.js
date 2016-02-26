@@ -1,4 +1,4 @@
-function expand(var percent, var parts) {
+function expand(percent, parts) {
     for (var i = 0; i < 6; i++) {
         parts[i].position.y = (10.0 / i) * percent;
         parts[11 - i].position.y = 10 * percent;
@@ -6,29 +6,29 @@ function expand(var percent, var parts) {
 
 }
 
-function rotate(var degree, var parts) {
+function rotate(degree, parts) {
     for (var part in parts) {
         part.rotation.y = degree * Math.PI / 180;
     }
 }
 
-function select(var part) {
+function select(part) {
     highlight(part);
     zoom(part);
     display(part);
 }
 
-function highlight(var part) {
+function highlight(part) {
     //Change color
 }
 
-function zoom(var part) {
+function zoom(part) {
     enableViewPort = true;
     secondCamera.position.copy(part.position);
     secondCamera.lookAt(part.position.x, part.position.y, part.position.z);
     secondCamera.position.z -= 5;
 }
 
-function display(var part) {
+function display(part) {
     //Display description
 }
