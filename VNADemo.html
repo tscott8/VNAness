@@ -12,24 +12,26 @@
 		<script src='threeJS/three.js'></script>
 		<script src='threeJS/OrbitControls.js'></script>
 		<script src='threeJS/OBJLoader.js'></script>
-		<script src='./objects.js'></script>
         <script type="text/javascript" src="threeJS/dat.gui.js"></script>
-
+		<script src='./objects.js'></script>
 		<script type="text/javascript">
 
 		var scene, camera, renderer;
 		var geometry, material, mesh;
-//		var objectLoaded;
 		var factor = -0.01;
-        //var top;
+        var topp;
         var motherboard;
         var cpu;
         var gpu;
         var ram;
+		var ssd;
         var battery;
+		var dvd;
+		var bus;
         var bottom;
         var gui;
-            
+        var laptopFull = new THREE.Object3D();
+    
         gui = new dat.GUI();
             
 		init();
@@ -60,16 +62,18 @@
             //they don't show up. Any idea why the certain ones are 
             //loaded correctly and others not?
 		function loadObject() {
-//			var loader = new THREE.ObjectLoader();
-
-			var top = LoadTop(1, 0, -.5);
+			topp = LoadTop(1,0,-.5);
             motherboard = LoadMotherboard(.505,0,0);
-			cpu = LoadCPU(.85, 0, -.25);
-			gpu = LoadGPU(.85, 0, -2.25);
-			var ram = LoadRAM(1, 0, 1);
-			var battery = LoadBattery(1, 0, 1);
-			var bottom = LoadBottom(1, 0, -2);
-			scene.add(top,bottom,motherboard,cpu,gpu);
+			cpu = LoadCPU(.85,0,-.25);
+			gpu = LoadGPU(.85,0,-2.25);
+			ram = LoadRAM(.25,0,1);
+			ssd = LoadSSD(.65,0,0);
+			battery = LoadBattery(.45,0,-.1);
+			dvd = LoadDVD(1,0,1);
+			bus = LoadBus(1,0,1);
+			bottom = LoadBottom(1,0,-2);
+			laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
+			scene.add(laptopFull);
 		}
 		
 		function init() {
