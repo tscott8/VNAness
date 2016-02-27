@@ -35,7 +35,9 @@ function LoadMotherboard(scale, rotate, pos){
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
-			obj.position.y = pos;	
+			obj.position.y = pos;
+			obj.position.x = 1.28;
+			obj.position.z = 2.0;
 //			motherboard = obj;
 //			scene.add( motherboard );
 		motherboard.add(obj);
@@ -50,6 +52,8 @@ function LoadCPU(scale, rotate, pos){
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
+			obj.position.x = 1.85;
+			obj.position.z = 2.9;
 //			cpu = obj;
 //			scene.add( cpu );
 		cpu.add(obj);
@@ -64,6 +68,7 @@ function LoadGPU(scale, rotate, pos){
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
+			obj.position.x = 1.85;
 //			gpu = obj;
 //			scene.add( gpu );
 		gpu.add(obj);

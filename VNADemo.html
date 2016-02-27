@@ -28,7 +28,7 @@
 
 			var directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
 			directionalLight.position.set(1, 1, 1).normalize();
-			directionalLight.intensity = 1.0;
+			directionalLight.intensity = .5;
 			scene.add( directionalLight );
 
 			directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
@@ -46,10 +46,12 @@
 		function loadObject() {
 //			var loader = new THREE.ObjectLoader();
 
-			var top = LoadTop(1, 0, 2);
-			var motherboard = LoadMotherboard(.5,0,0);
-			var cpu = LoadCPU(1, 0, .5);
-			var gpu = LoadGPU(1, 0, -1.75);
+			var top = LoadTop(1, 0, -.5);
+			var motherboard = LoadMotherboard(.505,0,0);
+			var cpu = LoadCPU(.85, 0, -.25);
+			var gpu = LoadGPU(.85, 0, -2.25);
+			var ram = LoadRAM(1, 0, 1);
+			var battery = LoadBattery(1, 0, 1);
 			var bottom = LoadBottom(1, 0, -2);
 			scene.add(top,bottom,motherboard,cpu,gpu);
 		}
