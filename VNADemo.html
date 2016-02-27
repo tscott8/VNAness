@@ -54,7 +54,11 @@
 			scene.add(directionalLight);
 
 		}
-			
+            //In order to add controls to these objects, they need
+            //to be "Global" variables, but when I declare anything
+            //besides the motherboard, cpu, and gpu at the top, then 
+            //they don't show up. Any idea why the certain ones are 
+            //loaded correctly and others not?
 		function loadObject() {
 //			var loader = new THREE.ObjectLoader();
 
