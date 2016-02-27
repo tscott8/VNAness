@@ -13,15 +13,27 @@
 		<script src='threeJS/OrbitControls.js'></script>
 		<script src='threeJS/OBJLoader.js'></script>
 		<script src='./objects.js'></script>
+        <script type="text/javascript" src="threeJS/dat.gui.js"></script>
 
-		<script>
+		<script type="text/javascript">
 
 		var scene, camera, renderer;
 		var geometry, material, mesh;
 //		var objectLoaded;
 		var factor = -0.01;
-
+        //var top;
+        var motherboard;
+        var cpu;
+        var gpu;
+        var ram;
+        var battery;
+        var bottom;
+        var gui;
+            
+        gui = new dat.GUI();
+            
 		init();
+        setupGui();
 		animate();
 			
 		function threePointLight() {
@@ -47,9 +59,9 @@
 //			var loader = new THREE.ObjectLoader();
 
 			var top = LoadTop(1, 0, -.5);
-			var motherboard = LoadMotherboard(.505,0,0);
-			var cpu = LoadCPU(.85, 0, -.25);
-			var gpu = LoadGPU(.85, 0, -2.25);
+            motherboard = LoadMotherboard(.505,0,0);
+			cpu = LoadCPU(.85, 0, -.25);
+			gpu = LoadGPU(.85, 0, -2.25);
 			var ram = LoadRAM(1, 0, 1);
 			var battery = LoadBattery(1, 0, 1);
 			var bottom = LoadBottom(1, 0, -2);
@@ -78,6 +90,19 @@
 
 		}
 
+         function setupGui() {
+            controls = new function() {
+                this.rotationSpeed = 0;
+                this.xPosition = 0;
+                this.yPosition = 0;
+                this.zPosition = 0;
+            }  
+        
+            gui.add(controls, 'rotationSpeed', 0.0, 10.0);
+            gui.add(controls, 'xPosition', -15, 15);
+            gui.add(controls, 'yPosition', -15, 15);
+            gui.add(controls, 'zPosition', -15, 15);
+        }
 		// This function is called many times a second.  You do anything that
 		// needs to be updated, changed, moved here
 		function animate() {
@@ -93,6 +118,23 @@
 ////
 //			objTieBig.rotation.x += 0.02;
 //			objTieBig.rotation.y += 0.01;
+            
+            motherboard.rotation.x = controls.rotationSpeed;
+			motherboard.rotation.y = controls.rotationSpeed;
+            cpu.rotation.x = controls.rotationSpeed;
+			cpu.rotation.y = controls.rotationSpeed;
+            gpu.rotation.x = controls.rotationSpeed;
+			gpu.rotation.y = controls.rotationSpeed;
+
+            motherboard.position.x = controls.xPosition;
+            motherboard.position.y = controls.yPosition;
+            motherboard.position.z = controls.zPosition;
+            cpu.position.x = controls.xPosition;
+            cpu.position.y = controls.yPosition;
+            cpu.position.z = controls.zPosition;
+            gpu.position.x = controls.xPosition;
+            gpu.position.y = controls.yPosition;
+            gpu.position.z = controls.zPosition;
 
 			// must do these two statements
 			renderer.render( scene, camera ); 
