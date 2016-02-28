@@ -70,7 +70,9 @@ var ram = new THREE.Object3D();
 	loader.load("ram.obj", 
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
-			obj.rotation.y = rotate;
+		obj.rotation.z = 90 * Math.PI / 180;
+		obj.rotation.x = 90 * Math.PI / 180;
+		obj.rotation.y = rotate;
 			obj.position.y = pos;
 		ram.add(obj);
 		});
