@@ -74,6 +74,7 @@
              bus = LoadBus(1,0,1);
              bottom = LoadBottom(1,0,-2);
              laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
+             laptopFull.rotation.y = Math.PI / 2;
              scene.add(laptopFull);
          }
 
@@ -102,15 +103,11 @@
       function setupGui() {
         controls = new function() {
             this.rotationSpeed = 0;
-            this.xPosition = 0;
-            this.yPosition = 0;
-            this.zPosition = 0;
+            this.expand = 0;
         }  
         
         gui.add(controls, 'rotationSpeed', 0.0, 10.0);
-        gui.add(controls, 'xPosition', -15, 15);
-        gui.add(controls, 'yPosition', -15, 15);
-        gui.add(controls, 'zPosition', -15, 15);
+        gui.add(controls, 'expand', 0, 10);
     }
 		// This function is called many times a second.  You do anything that
 		// needs to be updated, changed, moved here
@@ -136,7 +133,8 @@
         gpu.position.x = controls.xPosition;
         gpu.position.y = controls.yPosition;
         gpu.position.z = controls.zPosition;*/
-        expand(controls.yPosition);
+        expand(controls.expand);
+        rotate(controls.rotationSpeed);
 
 		// must do these two statements
 		renderer.render( scene, camera ); 
