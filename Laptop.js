@@ -29,11 +29,11 @@ class Laptop {
 class Top extends Part {
 load(){
 	var loader = new THREE.ObjectLoader();
-	loader.load("laptop-top.obj",
+	loader.load("laptop-top.obj", 
   	function ( obj ) {
 		var xScale = 3;
 			obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-  		obj.position.y = 5;
+  		obj.position.y = 5;	
 		objLoaded += obj;
       	scene.add( obj );
   	});
@@ -46,7 +46,7 @@ class Motherboard extends Part {
 	var Motherboard = new THREE.Object;
 	//add pieces to Motherboard object
 	load() {
-	loader.load("Motherboard.obj",
+	loader.load("Motherboard.obj", 
 		function ( obj ) {
 		var xScale = 0.1;
 			obj.scale.x = obj.scale.y = obj.scale.z = xScale;
@@ -63,7 +63,7 @@ class Motherboard extends Part {
 }
 class RAM extends Part {
 	load(){
-loader.load("ram.obj",
+loader.load("ram.obj", 
 	function ( obj ) {
 	var xScale = 1;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
@@ -77,7 +77,7 @@ loader.load("ram.obj",
 }
 class CPU extends Part {
 	load(){
-loader.load("i7.obj",
+loader.load("i7.obj", 
 	function ( obj ) {
 	var xScale = 1;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
@@ -91,7 +91,7 @@ loader.load("i7.obj",
 }
 class GPU extends Part {
 load(){
-loader.load("gpu.obj",
+loader.load("gpu.obj", 
 	function ( obj ) {
 	var xScale = 1;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
@@ -106,11 +106,11 @@ loader.load("gpu.obj",
 class Bus extends Part {
 	load(){
 var loader = new THREE.OBJLoader();
-loader.load("bus.obj",
+loader.load("bus.obj", 
   	function ( obj ) {
 		var xScale = 3;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-		obj.position.y = -2;
+		obj.position.y = -2;	
   		objLoaded = obj;
       	scene.add( obj );
   	});
@@ -119,11 +119,11 @@ loader.load("bus.obj",
 class HDD extends Part {
 	load(){
 var loader = new THREE.OBJLoader();
-loader.load("ssd.obj",
+loader.load("ssd.obj", 
   	function ( obj ) {
 		var xScale = 3;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-		obj.position.y = -2;
+		obj.position.y = -2;	
   		objLoaded = obj;
       	scene.add( obj );
   	});
@@ -132,11 +132,11 @@ loader.load("ssd.obj",
 class Battery extends Part {
 	load(){
 var loader = new THREE.OBJLoader();
-loader.load("battery.obj",
+loader.load("battery.obj", 
   	function ( obj ) {
 		var xScale = 3;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-		obj.position.y = -2;
+		obj.position.y = -2;	
   		objLoaded = obj;
       	scene.add( obj );
   	});
@@ -145,11 +145,11 @@ loader.load("battery.obj",
 class CD extends Part {
 	load(){
 var loader = new THREE.OBJLoader();
-loader.load("cd.obj",
+loader.load("cd.obj", 
   	function ( obj ) {
 		var xScale = 3;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-		obj.position.y = -2;
+		obj.position.y = -2;	
   		objLoaded = obj;
       	scene.add( obj );
   	});
@@ -158,11 +158,11 @@ loader.load("cd.obj",
 class Bottom extends Part {
 	load(){
 var loader = new THREE.OBJLoader();
-loader.load("laptop-bottom.obj",
+loader.load("laptop-bottom.obj", 
   	function ( obj ) {
 		var xScale = 3;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
-		obj.position.y = -2;
+		obj.position.y = -2;	
   		objLoaded = obj;
       	scene.add( obj );
   	});
