@@ -113,7 +113,7 @@ function LoadDVD(scale, rotate, pos){
 	loader.load("cd_dvd.obj",
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
-			obj.rotation.y = rotate;
+			obj.rotation.y = rotate * Math.PI/180;
 			obj.position.y = pos;
 		dvd.add(obj);
 		});
