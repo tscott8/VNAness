@@ -14,6 +14,7 @@
   <script src='threeJS/OBJLoader.js'></script>
   <script type="text/javascript" src="threeJS/dat.gui.js"></script>
   <script src='./objects.js'></script>
+  <script src='./controls.js'></script>
   <script type="text/javascript">
 
       var scene, camera, renderer;
@@ -119,14 +120,14 @@
 
 		// This is just for the box (only for this example)
 
-        motherboard.rotation.x = controls.rotationSpeed;
+        /*motherboard.rotation.x = controls.rotationSpeed;
         motherboard.rotation.y = controls.rotationSpeed;
         cpu.rotation.x = controls.rotationSpeed;
         cpu.rotation.y = controls.rotationSpeed;
         gpu.rotation.x = controls.rotationSpeed;
-        gpu.rotation.y = controls.rotationSpeed;
+        gpu.rotation.y = controls.rotationSpeed;*/
 
-        motherboard.position.x = controls.xPosition;
+        /*motherboard.position.x = controls.xPosition;
         motherboard.position.y = controls.yPosition;
         motherboard.position.z = controls.zPosition;
         cpu.position.x = controls.xPosition;
@@ -134,7 +135,8 @@
         cpu.position.z = controls.zPosition;
         gpu.position.x = controls.xPosition;
         gpu.position.y = controls.yPosition;
-        gpu.position.z = controls.zPosition;
+        gpu.position.z = controls.zPosition;*/
+        expand(controls.yPosition);
 
 		// must do these two statements
 		renderer.render( scene, camera ); 

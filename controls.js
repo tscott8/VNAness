@@ -1,44 +1,28 @@
-class Part {
+function expand(percent) {
+    topp.position.y = 5 * percent;
+    cpu.position.y = 1 * percent;
+    gpu.position.y = 1 * percent;
+    ram.position.y = 2 * percent;
+    ssd.position.y = -1 * percent;
+    battery.position.y = -3 * percent;
+    dvd.position.y = 4 * percent;
+    bus.position.y = -4 * percent;
+    bottom.position.y = -5 * percent;
+} 
+
+function zoom() {
     
-    
-    rotate(var angle) {
-        
-    }
-    
-    expand(var percent) {
-        
-    }
-    
-    zoom() {
-        
+}
+
+function rotate(degree,laptop) {
+    for (var part in laptop) {
+        part.rotate(degree);
     }
 }
 
-class Controls {
-    constructor() {
-    
-    }
-    
-    expand(var percent, var laptop) {
-        for (var part in laptop) {
-            part.expand(percent);
-        }
-    } 
-    
-    zoom() {
-        
-    }
-    
-    rotate(var degree, var laptop) {
-        for (var part in laptop) {
-            part.rotate(degree);
-        }
-    }
-    
-    select(var id, var laptop) {
-        var item = laptop.getPartById(id);
-        highlight(item);
-        zoom(item);
-        display(item);
-    }
+function select(id,laptop) {
+    var item = laptop.getPartById(id);
+    highlight(item);
+    zoom(item);
+    display(item);
 }
