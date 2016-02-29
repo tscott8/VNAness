@@ -20,6 +20,7 @@
       var scene, camera, renderer;
       var geometry, material, mesh;
       var factor = -0.01;
+      //var element;
       var topp;
       var motherboard;
       var cpu;
@@ -101,21 +102,26 @@
       }
 
       function setupGui() {
+        effectController = {
+              fov:40
+          };
         controls = new function() {
             this.rotationSpeed = 0;
             this.expand = 0;
+            this.zoom = 0;
         }  
         
+        var element = gui.add(effectController, "fov", 1.0, 179.0);
         gui.add(controls, 'rotationSpeed', 0.0, 10.0);
         gui.add(controls, 'expand', 0, 10);
+          
+        element.name("field of view");
     }
 		// This function is called many times a second.  You do anything that
 		// needs to be updated, changed, moved here
 	function animate() {
 
 		requestAnimationFrame( animate );
-
-		// This is just for the box (only for this example)
 
         /*motherboard.rotation.x = controls.rotationSpeed;
         motherboard.rotation.y = controls.rotationSpeed;
@@ -136,6 +142,8 @@
         expand(controls.expand);
         rotate(controls.rotationSpeed);
 
+        camera.fov = effectController.fov;
+        camera.updateProjectionMatrix();
 		// must do these two statements
 		renderer.render( scene, camera ); 
 		controls.update();
