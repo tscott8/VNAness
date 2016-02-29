@@ -110,7 +110,7 @@ return battery;
 function LoadDVD(scale, rotate, pos){
 	var dvd = new THREE.Object3D();
 	var loader = new THREE.OBJLoader();
-	loader.load("dvd.obj", 
+	loader.load("cd_dvd.obj",
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
