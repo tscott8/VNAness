@@ -3,10 +3,10 @@ function expand(percent) {
     cpu.position.y = 1 * percent;
     gpu.position.y = 1 * percent;
     ram.position.y = 2 * percent;
-    ssd.position.y = -1 * percent;
+    ssd.position.y = 2 * percent;
     battery.position.y = -2 * percent;
     dvd.position.y = 3 * percent;
-    bus.position.y = -3 * percent;
+    bus.position.y = -2 * percent;
     bottom.position.y = -4 * percent;
 } 
 
