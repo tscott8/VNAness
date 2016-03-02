@@ -15,7 +15,7 @@ function zoom() {
 }
 
 function rotate(degree) {
-    laptopFull.rotation.x = degree;
+  //  laptopFull.rotation.x = degree;
     laptopFull.rotation.y = degree + Math.PI / 2;
 }
 
