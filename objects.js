@@ -1,7 +1,7 @@
 function LoadTop(scale, rotate, pos){
 	var top = new THREE.Object3D();
 	var loader = new THREE.OBJMTLLoader();
-	loader.load("laptop-top2.obj","laptop-top2.mtl", 
+	loader.load("laptop-top2.obj", "laptop-top2.mtl", 
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
@@ -13,8 +13,8 @@ function LoadTop(scale, rotate, pos){
 
 function LoadBottom(scale, rotate, pos){
 	var bottom = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("laptop-bottom.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/laptop-bottom.obj", 
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
@@ -25,8 +25,8 @@ return bottom;
 }
 function LoadMotherboard(scale, rotate, pos){
 	var motherboard = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("motherboard.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/motherboard.obj", 
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
@@ -39,8 +39,8 @@ return motherboard;
 }
 function LoadCPU(scale, rotate, pos){
 	var cpu = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("i7.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/i7.obj", 
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
@@ -53,8 +53,8 @@ return cpu;
 }
 function LoadGPU(scale, rotate, pos){
 	var gpu = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("gpu.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/gpu.obj", 
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
@@ -68,8 +68,8 @@ return gpu;
 }
 function LoadRAM(scale, rotate, pos){
 var ram = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("ram.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/ram.obj", 
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 		obj.rotation.z = 90 * Math.PI / 180;
@@ -84,8 +84,8 @@ return ram;
 }
 function LoadSSD(scale, rotate, pos){
 	var ssd = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("ssd.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/ssd.obj", 
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
@@ -98,8 +98,8 @@ return ssd;
 }
 function LoadBattery(scale, rotate, pos){
 	var battery = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("battery.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/battery.obj", 
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 		obj.scale.y = .25;
@@ -113,8 +113,8 @@ return battery;
 }
 function LoadDVD(scale, rotate, pos){
 	var dvd = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("cd_dvd.obj",
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/cd_dvd.obj",
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 		obj.scale.y = .2;
@@ -128,8 +128,8 @@ return dvd;
 }
 function LoadBus(scale, rotate, pos){
 var bus = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("bus.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("objects/bus.obj", 
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
