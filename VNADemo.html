@@ -1,146 +1,134 @@
 <html>
 <head>
-  <title>VonNeumann demo app</title>
-  <style>
-     body { margin: 0; }
-     canvas { width: 100%; height: 100% }
- </style>
+    <title>VonNeumann demo app</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
 </head>
 <body>
 
-  <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
-  <script src='threeJS/three.js'></script>
-  <script src='threeJS/OrbitControls.js'></script>
-  <script src='threeJS/OBJLoader.js'></script>
-  <script type="text/javascript" src="threeJS/dat.gui.js"></script>
-  <script src='./objects.js'></script>
-  <script src='./controls.js'></script>
-  <script type="text/javascript">
+    <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+    <script src='threeJS/three.js'></script>
+    <script src='threeJS/OrbitControls.js'></script>
+    <script src='threeJS/OBJLoader.js'></script>
+    <script type="text/javascript" src="threeJS/dat.gui.js"></script>
+    <script src='./objects.js'></script>
+    <script src='./controls.js'></script>
+    <script type="text/javascript">
 
-      var scene, camera, renderer;
-      var geometry, material, mesh;
-      var factor = -0.01;
-      var topp;
-      var motherboard;
-      var cpu;
-      var gpu;
-      var ram;
-      var ssd;
-      var battery;
-      var dvd;
-      var bus;
-      var bottom;
-      var gui;
-      var laptopFull = new THREE.Object3D();
+        var scene, camera, renderer;
+        var geometry, material, mesh;
+        var factor = -0.01;
+        //var element;
+        var topp;
+        var motherboard;
+        var cpu;
+        var gpu;
+        var ram;
+        var ssd;
+        var battery;
+        var dvd;
+        var bus;
+        var bottom;
+        var gui;
+        var laptopFull = new THREE.Object3D();
 
-      gui = new dat.GUI();
+        gui = new dat.GUI();
 
-      init();
-      setupGui();
-      animate();
+        init();
+        setupGui();
+        animate();
 
-      function threePointLight() {
+        function threePointLight() {
 
-         var directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
-         directionalLight.position.set(1, 1, 1).normalize();
-         directionalLight.intensity = .5;
-         scene.add( directionalLight );
+            var directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
+            directionalLight.position.set(1, 1, 1).normalize();
+            directionalLight.intensity = .5;
+            scene.add( directionalLight );
 
-         directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
-         directionalLight.position.set(-1, 0.6, 0.5).normalize();
-         directionalLight.intensity = 0.5;
-         scene.add(directionalLight);
+            directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
+            directionalLight.position.set(-1, 0.6, 0.5).normalize();
+            directionalLight.intensity = 0.5;
+            scene.add(directionalLight);
 
-         directionalLight = new THREE.DirectionalLight();
-         directionalLight.position.set(-0.3, 0.6, -0.8).normalize( 0xb8b8b8 );
-         directionalLight.intensity = 0.45;
-         scene.add(directionalLight);
+            directionalLight = new THREE.DirectionalLight();
+            directionalLight.position.set(-0.3, 0.6, -0.8).normalize( 0xb8b8b8 );
+            directionalLight.intensity = 0.45;
+            scene.add(directionalLight);
 
-     }
-            //In order to add controls to these objects, they need
-            //to be "Global" variables, but when I declare anything
-            //besides the motherboard, cpu, and gpu at the top, then 
-            //they don't show up. Any idea why the certain ones are 
-            //loaded correctly and others not?
-            function loadObject() {
-             topp = LoadTop(1,0,-.5);
-             motherboard = LoadMotherboard(.505,0,0);
-             cpu = LoadCPU(.85,0,-.25);
-             gpu = LoadGPU(.85,0,-2.25);
-             ram = LoadRAM(.25,0,-.25);
-             ssd = LoadSSD(.65,0,0);
-             battery = LoadBattery(.45,0,-.1);
-             dvd = LoadDVD(.4,90,-.15);
-             bus = LoadBus(1,0,1);
-             bottom = LoadBottom(1,0,-2);
-             laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
-             laptopFull.rotation.y = Math.PI / 2;
-             scene.add(laptopFull);
-         }
+        }
+        function loadObject() {
 
-         function init() {
+            topp = LoadTop(1,0,-.5);
+            motherboard = LoadMotherboard(.505,0,0);
+            cpu = LoadCPU(.85,0,-.25);
+            gpu = LoadGPU(.85,0,-2.25);
+            ram = LoadRAM(.25,0,-.25);
+            ssd = LoadSSD(.65,0,0);
+            battery = LoadBattery(.45,0,-.1);
+            dvd = LoadDVD(.4,90,-.15);
+            bus = LoadBus(1,0,1);
+            bottom = LoadBottom(1,0,-2);
+            laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
+            laptopFull.rotation.y = Math.PI / 2;
+            scene.add(laptopFull);
+        }
 
-             scene = new THREE.Scene();
+        function init() {
 
-             camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-             camera.position.z = -30;
+            scene = new THREE.Scene();
 
-             loadObject();
-             threePointLight();
+            camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+            camera.position.z = -30;
 
-             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true	} );
-             renderer.setClearColor( 0x000000, 1 );
-             renderer.setPixelRatio( window.devicePixelRatio );
-             renderer.setSize( window.innerWidth, window.innerHeight );
+            loadObject();
+            threePointLight();
 
-	    	// Add OrbitControls so that we can pan around with the mouse.
-          controls = new THREE.OrbitControls(camera, renderer.domElement);
-          controls.target.set(0,0,0);
-          document.body.appendChild( renderer.domElement );
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true	} );
+            renderer.setClearColor( 0x000000, 1 );
+            renderer.setPixelRatio( window.devicePixelRatio );
+            renderer.setSize( window.innerWidth, window.innerHeight );
 
-      }
+            // Add OrbitControls so that we can pan around with the mouse.
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.target.set(0,0,0);
+            document.body.appendChild( renderer.domElement );
+        }
 
-      function setupGui() {
-        controls = new function() {
-            this.rotationSpeed = 0;
-            this.expand = 0;
-        }  
-        
-        gui.add(controls, 'rotationSpeed', 0.0, 10.0);
-        gui.add(controls, 'expand', 0, 10);
-    }
-		// This function is called many times a second.  You do anything that
-		// needs to be updated, changed, moved here
-	function animate() {
+        //Setup the GUI
+        function setupGui() {
 
-		requestAnimationFrame( animate );
+            effectController = {fov:40};
+            
+            controls = new function() {
+                this.rotate = 0;
+                this.expand = 0;
+                this.zoom = 0;
+            }  
 
-		// This is just for the box (only for this example)
+            var element = gui.add(effectController, "fov", 1.0, 179.0);
+            gui.add(controls, 'rotate', 0.0, 10.0);
+            gui.add(controls, 'expand', 0, 10);
 
-        /*motherboard.rotation.x = controls.rotationSpeed;
-        motherboard.rotation.y = controls.rotationSpeed;
-        cpu.rotation.x = controls.rotationSpeed;
-        cpu.rotation.y = controls.rotationSpeed;
-        gpu.rotation.x = controls.rotationSpeed;
-        gpu.rotation.y = controls.rotationSpeed;*/
+            element.name("field of view");
+        }
 
-        /*motherboard.position.x = controls.xPosition;
-        motherboard.position.y = controls.yPosition;
-        motherboard.position.z = controls.zPosition;
-        cpu.position.x = controls.xPosition;
-        cpu.position.y = controls.yPosition;
-        cpu.position.z = controls.zPosition;
-        gpu.position.x = controls.xPosition;
-        gpu.position.y = controls.yPosition;
-        gpu.position.z = controls.zPosition;*/
-        expand(controls.expand);
-        rotate(controls.rotationSpeed);
+        // This function is called many times a second. 
+        // You do anything that needs to be updated, changed, moved here
+        function animate() {
 
-		// must do these two statements
-		renderer.render( scene, camera ); 
-		controls.update();
-
-	}
-  </script>
+            requestAnimationFrame( animate );
+            
+            expand(controls.expand);
+            rotate(controls.rotate);
+            camera.fov = effectController.fov;
+            camera.updateProjectionMatrix();
+            
+            // must do these two statements
+            renderer.render( scene, camera ); 
+            controls.update();
+        }
+    </script>
 </body>
 </html>
