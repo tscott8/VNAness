@@ -43,38 +43,48 @@
         animate();
 
         function threePointLight() {
-
-//            var directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
-//            directionalLight.position.set(1, 1, 1).normalize();
-//            directionalLight.intensity = .5;
-//            scene.add( directionalLight );
+			var x;
+			var y;
+			var z;
+			x = y = z = 3;
+			var intense =1;
+			var color = 0xffffff;
+			
+//            var directionalLight = new THREE.DirectionalLight( color );
+//            directionalLight.position.set(x, y, z).normalize();
+//            directionalLight.intensity = intense;
+//            scene.add( directionalLight );//top
 //
-//            directionalLight = new THREE.DirectionalLight( 0xb8b8b8 );
-//            directionalLight.position.set(-1, 0.6, 0.5).normalize();
-//            directionalLight.intensity = 1;
-//            scene.add(directionalLight);
+//            directionalLight = new THREE.DirectionalLight( color );
+//            directionalLight.position.set(x, -y, z).normalize();
+//            directionalLight.intensity = intense;
+//            scene.add(directionalLight);//bottom
 //
-//            directionalLight = new THREE.DirectionalLight();
-//            directionalLight.position.set(-0.3, 0.6, -0.8).normalize( 0xb8b8b8 );
-//            directionalLight.intensity = 0.45;
-//            scene.add(directionalLight);
-			var light = new THREE.HemisphereLight( 0xffffff, 0x080820, 1 );
+//            directionalLight = new THREE.DirectionalLight(color);
+//            directionalLight.position.set(-x, 0, 0).normalize();
+//            directionalLight.intensity = intense;
+//            scene.add(directionalLight); //left
+//			
+//			directionalLight = new THREE.DirectionalLight(color);
+//            directionalLight.position.set(x, 0, 0).normalize();
+//            directionalLight.intensity = intense;
+//            scene.add(directionalLight); //right
+			
+			var light = new THREE.HemisphereLight( color, 0x080820, intense );
 			scene.add( light );
-
-
         }
         function loadObject() {
 
             topp = LoadTop(1,0,-.5);
             motherboard = LoadMotherboard(.505,0,0);
-            cpu = LoadCPU(.85,0,-.25);
-            gpu = LoadGPU(.85,0,-2.25);
-            ram = LoadRAM(.25,0,-.25);
+            //cpu = LoadCPU(.85,0,-.25);
+            //gpu = LoadGPU(.85,0,-2.25);
+            //ram = LoadRAM(.25,0,-.25);
             ssd = LoadSSD(.65,0,0);
-            battery = LoadBattery(.45,0,-.1);
-            dvd = LoadDVD(.4,90,-.15);
-            bus = LoadBus(1,0,1);
-            bottom = LoadBottom(1,0,-2);
+            //battery = LoadBattery(.45,0,-.1);
+            //dvd = LoadDVD(.4,90,-.15);
+            //bus = LoadBus(1,0,1);
+            //bottom = LoadBottom(1,0,-2);
             laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
             laptopFull.rotation.y = Math.PI / 2;
             scene.add(laptopFull);
