@@ -1,13 +1,13 @@
 function LoadTop(scale, rotate, pos){
 	var top = new THREE.Object3D();
-	var loader = new THREE.OBJLoader();
-	loader.load("laptop-top.obj", 
+	var loader = new THREE.OBJMTLLoader();
+	loader.load("laptop-top2.obj","laptop-top2.mtl", 
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
 			top.add(obj);
-		});
+		});	
 	return top;
 }
 
