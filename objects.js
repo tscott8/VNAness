@@ -27,7 +27,7 @@ return motherboardLoad;
 function LoadCPU(scale, rotate, pos){
 	var cpuLoad = new THREE.Object3D();
 	var loader = new THREE.OBJMTLLoader();
-	loader.load("i72.obj", 
+	loader.load("i72.obj", "i72.mtl",
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
@@ -46,7 +46,6 @@ function LoadGPU(scale, rotate, pos){
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
-			//obj.position.x = 1.85;
 			obj.position.z = 2.9;
 			obj.position.x = -1.25;
 		gpuLoad.add(obj);
@@ -63,7 +62,6 @@ var ramLoad = new THREE.Object3D();
 		obj.rotation.x = 90 * Math.PI / 180;
 		obj.rotation.y = rotate;
 			obj.position.y = pos;
-//		obj.position.z;
 		obj.position.x = 2.85;
 		ramLoad.add(obj);
 		});
