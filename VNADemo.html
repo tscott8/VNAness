@@ -46,7 +46,7 @@
 			var z;
 			x = y = z = 3;
 			var intense =.5;
-			var color = 0xb2b2b2;
+			var color = 0xffffff;
 
             var directionalLight = new THREE.DirectionalLight( color );
             directionalLight.position.set(x, y, z).normalize();
@@ -100,8 +100,8 @@
             loadObject();
             threePointLight();
 
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true	} );
-            renderer.setClearColor( 0x000000, 1 );
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true,} );
+            renderer.setClearColor( 0xb2b2b2, 1 );
             renderer.setPixelRatio( window.devicePixelRatio );
             renderer.setSize( window.innerWidth, window.innerHeight );
 
