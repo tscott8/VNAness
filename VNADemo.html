@@ -48,7 +48,7 @@
 			x = y = z = 3;
 			var intense =.5;
 			var color = 0xb2b2b2;
-			
+
             var directionalLight = new THREE.DirectionalLight( color );
             directionalLight.position.set(x, y, z).normalize();
             directionalLight.intensity = intense;
@@ -63,12 +63,12 @@
             directionalLight.position.set(-x, 0, 0).normalize();
             directionalLight.intensity = intense;
             scene.add(directionalLight); //left
-			
+
 			directionalLight = new THREE.DirectionalLight(color);
             directionalLight.position.set(x, 0, 0).normalize();
             directionalLight.intensity = intense;
             scene.add(directionalLight); //right
-			
+
 			var light = new THREE.HemisphereLight( color, 0x000000, intense );
 			scene.add( light );
         }
@@ -76,7 +76,7 @@
 
             topp = LoadTop(1,0,-.5);
             motherboard = LoadMotherboard(.505,0,0);
-            //cpu = LoadCPU(.85,0,-.25);
+            cpu = LoadCPU(.85,0,-.25);
             //gpu = LoadGPU(.85,0,-2.25);
             ram = LoadRAM(.25,0,-.25);
             ssd = LoadSSD(.65,0,0);
@@ -84,7 +84,7 @@
             dvd = LoadDVD(.4,90,-.15);
             //bus = LoadBus(1,0,1);
             //bottom = LoadBottom(1,0,-2);
-            laptopFull.add(topp,motherboard,/*cpu,gpu,*/ram,ssd,/*battery,*/dvd/*,bus,bottom*/);
+            laptopFull.add(topp,motherboard,cpu,/*gpu,*/ram,ssd,/*battery,*/dvd/*,bus,bottom*/);
             laptopFull.rotation.y = Math.PI / 2;
 			laptopFull.position.y = -2;
             scene.add(laptopFull);
@@ -116,12 +116,12 @@
         function setupGui() {
 
             effectController = {fov:40};
-            
+
             controls = new function() {
                 this.rotate = 0;
                 this.expand = 0;
                 this.zoom = 0;
-            }  
+            }
 
             var element = gui.add(effectController, "fov", 1.0, 179.0);
             gui.add(controls, 'rotate', 0.0, 10.0);
@@ -130,19 +130,19 @@
             element.name("field of view");
         }
 
-        // This function is called many times a second. 
+        // This function is called many times a second.
         // You do anything that needs to be updated, changed, moved here
         function animate() {
 
             requestAnimationFrame( animate );
-            
+
             expand(controls.expand);
             rotate(controls.rotate);
             camera.fov = effectController.fov;
             camera.updateProjectionMatrix();
-            
+
             // must do these two statements
-            renderer.render( scene, camera ); 
+            renderer.render( scene, camera );
           //  controls.update();
         }
     </script>
