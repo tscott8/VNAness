@@ -145,7 +145,7 @@ loader.load("battery.obj",
 class CD extends Part {
 	load(){
 var loader = new THREE.OBJLoader();
-loader.load("cd.obj", 
+loader.load("cd_dvd.obj", 
   	function ( obj ) {
 		var xScale = 3;
 		obj.scale.x = obj.scale.y = obj.scale.z = xScale;
