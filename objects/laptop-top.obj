@@ -1,6 +1,6 @@
 # Blender v2.76 (sub 0) OBJ File: 'laptop-top.blend'
 # www.blender.org
-mtllib laptop-top2.mtl
+mtllib laptop-top.mtl
 o Merged_Meshes
 v -6.177100 9.210300 6.678500
 v -6.184300 9.232300 7.160800
