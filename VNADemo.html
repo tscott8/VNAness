@@ -21,7 +21,6 @@
 
         var scene, camera, renderer;
         var geometry, material, mesh;
-       // var factor = -0.01;
         var topp = new THREE.Object3D();
         var motherboard = new THREE.Object3D();
         var cpu = new THREE.Object3D();
@@ -76,7 +75,7 @@
 
             topp = LoadTop(1,0,-.5);
             motherboard = LoadMotherboard(.505,0,0);
-            //cpu = LoadCPU(.85,0,-.25);
+            cpu = LoadCPU(.85,0,-.25);
             //gpu = LoadGPU(.85,0,-2.25);
             ram = LoadRAM(.25,0,-.25);
             ssd = LoadSSD(.65,0,0);
@@ -84,7 +83,7 @@
             dvd = LoadDVD(.4,90,-.15);
             //bus = LoadBus(1,0,1);
             //bottom = LoadBottom(1,0,-2);
-            laptopFull.add(topp,motherboard,/*cpu,gpu,*/ram,ssd,/*battery,*/dvd/*,bus,bottom*/);
+            laptopFull.add(topp,motherboard,cpu,/*gpu,*/ram,ssd,/*battery,*/dvd/*,bus,bottom*/);
             laptopFull.rotation.y = Math.PI / 2;
 			laptopFull.position.y = -2;
             scene.add(laptopFull);
