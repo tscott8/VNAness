@@ -1,6 +1,6 @@
 # Blender v2.76 (sub 0) OBJ File: 'Motherboard.blend'
 # www.blender.org
-mtllib motherboard2.mtl
+mtllib motherboard.mtl
 o Cube
 v 9.789648 -0.754854 -6.741368
 v 9.789648 -0.754854 9.658631

@@ -1,6 +1,6 @@
 # Blender v2.76 (sub 0) OBJ File: 'cd_dvd.blend'
 # www.blender.org
-mtllib cd_dvd2.mtl
+mtllib cd_dvd.mtl
 o Cube
 v 6.750000 -0.750000 -6.750000
 v 6.750000 -0.750000 6.750000

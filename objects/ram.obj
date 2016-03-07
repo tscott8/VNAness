@@ -1,6 +1,6 @@
 # Blender v2.76 (sub 0) OBJ File: 'ram.blend'
 # www.blender.org
-mtllib ram2.mtl
+mtllib ram.mtl
 o Cube
 v 3.800000 -1.800000 -0.128046
 v 3.800000 -1.800000 0.128046
