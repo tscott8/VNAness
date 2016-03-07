@@ -30,7 +30,7 @@ Ke 0.000000 0.000000 0.000000
 Ni -1.000000
 d 1.000000
 illum 2
-map_Kd i7/Metal_Aluminum_Anodized.jpg
+map_Kd Metal_Aluminum_Anodized.jpg
 
 newmtl Oro
 Ns 96.078431
@@ -41,7 +41,7 @@ Ke 0.000000 0.000000 0.000000
 Ni -1.000000
 d 1.000000
 illum 2
-map_Kd i7/Oro.jpg
+map_Kd Oro.jpg
 
 newmtl __Metal_Aluminum_Anodized_1
 Ns 96.078431
@@ -52,7 +52,7 @@ Ke 0.000000 0.000000 0.000000
 Ni -1.000000
 d 1.000000
 illum 2
-map_Kd i7/__Metal_Aluminum_Anodized_1.jpg
+map_Kd __Metal_Aluminum_Anodized_1.jpg
 
 newmtl material
 Ns 96.078431
@@ -73,7 +73,7 @@ Ke 0.000000 0.000000 0.000000
 Ni -1.000000
 d 1.000000
 illum 2
-map_Kd i7/texture.png
+map_Kd texture.png
 
 newmtl verde_borde
 Ns 96.078431
