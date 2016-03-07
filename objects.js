@@ -1,13 +1,13 @@
 function LoadTop(scale, rotate, pos){
 	var topLoad = new THREE.Object3D();
 	var loader = new THREE.OBJMTLLoader();
-	loader.load("laptop-top2.obj", "laptop-top2.mtl", 
+	loader.load("laptop-top2.obj", "laptop-top2.mtl",
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
 			topLoad.add(obj);
-		});	
+		});
 	return topLoad;
 }
 function LoadMotherboard(scale, rotate, pos){
@@ -27,7 +27,7 @@ return motherboardLoad;
 function LoadCPU(scale, rotate, pos){
 	var cpuLoad = new THREE.Object3D();
 	var loader = new THREE.OBJMTLLoader();
-	loader.load("i72.obj", "i72.mtl",
+	loader.load("i7.obj", "i7.mtl",
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
