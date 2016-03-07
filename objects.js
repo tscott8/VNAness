@@ -27,7 +27,7 @@ return motherboardLoad;
 function LoadCPU(scale, rotate, pos){
 	var cpuLoad = new THREE.Object3D();
 	var loader = new THREE.OBJMTLLoader();
-	loader.load("i7.obj", "i7.mtl",
+	loader.load("./objects/i7.obj", "./i7/i7.mtl",
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
