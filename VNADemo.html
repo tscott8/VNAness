@@ -76,14 +76,14 @@
             topp = LoadTop(1,0,-.5);
             motherboard = LoadMotherboard(.505,0,0);
             cpu = LoadCPU(.85,0,-.25);
-            //gpu = LoadGPU(.85,0,-2.25);
+            gpu = LoadGPU(.85,0,-2.25);
             ram = LoadRAM(.25,0,-.25);
             ssd = LoadSSD(.65,0,0);
-            //battery = LoadBattery(.45,0,-.1);
+            battery = LoadBattery(.45,0,-.1);
             dvd = LoadDVD(.4,90,-.15);
             //bus = LoadBus(1,0,1);
             //bottom = LoadBottom(1,0,-2);
-            laptopFull.add(topp,motherboard,cpu,/*gpu,*/ram,ssd,/*battery,*/dvd/*,bus,bottom*/);
+            laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd/*,bus,bottom*/);
             laptopFull.rotation.y = Math.PI / 2;
 			laptopFull.position.y = -2;
             scene.add(laptopFull);
@@ -100,8 +100,9 @@
             loadObject();
             threePointLight();
 
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true,} );
-            renderer.setClearColor( 0xb2b2b2, 1 );
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: true} );
+            renderer.shadowMapEnabled = true;
+			renderer.setClearColor( 0xb2b2b2, 1 );
             renderer.setPixelRatio( window.devicePixelRatio );
             renderer.setSize( window.innerWidth, window.innerHeight );
 

@@ -27,7 +27,7 @@ return motherboardLoad;
 function LoadCPU(scale, rotate, pos){
 	var cpuLoad = new THREE.Object3D();
 	var loader = new THREE.OBJMTLLoader();
-	loader.load("objects/i7/i7.obj", "objects/i7/i7.mtl",
+	loader.load("objects/i7.obj", "objects/i7.mtl",
 		function ( obj ) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
@@ -69,6 +69,8 @@ return ramLoad;
 }
 function LoadSSD(scale, rotate, pos){
 	var ssdLoad = new THREE.Object3D();
+//	var loader = new THREE.OBJLoader();
+//	loader.load("objects/ssd.obj", 
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/ssd.obj", "objects/ssd.mtl",
 		function ( obj ) {
@@ -98,6 +100,8 @@ return batteryLoad;
 }
 function LoadDVD(scale, rotate, pos){
 	var dvdLoad = new THREE.Object3D();
+//	var loader = new THREE.OBJLoader();
+//	loader.load("objects/cd_dvd.obj",
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/cd_dvd.obj", "objects/cd_dvd.mtl",
 		function ( obj ) {
