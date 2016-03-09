@@ -1,3 +1,9 @@
+function resetLaptop() {
+    expand(0);
+    
+    //controls.zoom = 0;
+}
+
 function expand(percent) {
     topp.position.y = 3 * percent;
     cpu.position.y = 1 * percent;

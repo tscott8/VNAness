@@ -111,40 +111,53 @@
             controls.target.set(0,0,0);
             document.body.appendChild( renderer.domElement );
         }
+        
+      function setupGui() {
+        effectController = {
+              fieldOfView:40
+          };
+        controls = new function() {
+            this.rotation = 0;
+            this.expand = 0;
+            //this.zoom = 0;
+            this.reset = false;//function() { ); };
+        }  
+       //controls.reset.onclick(expand(0));
+        //var element = 
+        gui.add(effectController, "fieldOfView", 1.0, 179.0);
+        gui.add(controls, 'rotation', 0.0, 10.0);
+        gui.add(controls, 'expand', 0, 5);
+        gui.add(controls, 'reset');   
+        //element.name("field of view");
+         
+    }
+		// This function is called many times a second.  You do anything that
+		// needs to be updated, changed, moved here
+	function animate() {
 
-        //Setup the GUI
-        function setupGui() {
-
-            effectController = {fov:40};
-
-            controls = new function() {
-                this.rotate = 0;
-                this.expand = 0;
-                this.zoom = 0;
+		requestAnimationFrame( animate );
+        
+        expand(controls.expand);
+        if(controls.reset == true)
+            {
+                expand(0);
+                rotate(0);
+                controls.reset = false;
+                controls.expand = 0;
+                controls.rotation = 0;
+                
             }
+        rotate(controls.rotation);
+        
+        // field of view controller updater
+        camera.fov = effectController.fieldOfView;
+        camera.updateProjectionMatrix();
+        
+		// must do these two statements
+		renderer.render( scene, camera ); 
+		controls.update();
 
-            var element = gui.add(effectController, "fov", 1.0, 179.0);
-            gui.add(controls, 'rotate', 0.0, 10.0);
-            gui.add(controls, 'expand', 0, 10);
-
-            element.name("field of view");
-        }
-
-        // This function is called many times a second.
-        // You do anything that needs to be updated, changed, moved here
-        function animate() {
-
-            requestAnimationFrame( animate );
-
-            expand(controls.expand);
-            rotate(controls.rotate);
-            camera.fov = effectController.fov;
-            camera.updateProjectionMatrix();
-
-            // must do these two statements
-            renderer.render( scene, camera );
-          //  controls.update();
-        }
-    </script>
+	}
+  </script>
 </body>
 </html>
