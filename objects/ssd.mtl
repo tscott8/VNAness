@@ -10,9 +10,9 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd textures/gold-texture.jpg
+map_Kd textures/aluminumMatteGray.jpg
 
-newmtl Material_aluminum.jpg
+newmtl Material_ram.jpg
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
@@ -21,4 +21,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd textures/brushedAluminum.jpg
+map_Kd textures/ram.jpg
