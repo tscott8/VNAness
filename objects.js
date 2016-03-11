@@ -75,6 +75,8 @@ function LoadSSD(scale, rotate, pos){
 	loader.load("objects/ssd.obj", "objects/ssd.mtl",
 		function ( obj ) {
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
+		obj.scale.y = .25;
+		obj.rotation.x = 180 * Math.PI/180;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
 			obj.position.x = 5;
