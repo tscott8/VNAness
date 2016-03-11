@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VonNeumann demo app</title>
+    <title>2nd viewport demo app</title>
     <style>
         body { margin: 0; }
         canvas { width: 100%; height: 100% }
@@ -9,7 +9,11 @@
 </head>
 <body>
 
-    <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+    <div id="main" style="position: absolute; left:0px; top:0px"></div>
+    <div id="small" style="position: absolute; left:0px; top: 75%">
+        <div id="left" style="position: absolute; left:0px; top: 0px"></div>
+        <div id="right" style="position: absolute; left:50%; top: 0px"></div>
+    </div>
     <script src='threeJS/three.js'></script>
     <script src='threeJS/OrbitControls.js'></script>
     <script src='threeJS/OBJLoader.js'></script>
@@ -20,7 +24,7 @@
     <script src='./controls.js'></script>
     <script type="text/javascript">
 
-        var scene, camera, renderer;
+        var scene1, scene2, camera1, camera2, renderer1, renderer2;
         var geometry, material, mesh;
         var topp = new THREE.Object3D();
         var motherboard = new THREE.Object3D();
@@ -34,6 +38,7 @@
         var bottom = new THREE.Object3D();
         var gui = new THREE.Object3D();
         var laptopFull = new THREE.Object3D();
+        var controls;
 
         gui = new dat.GUI();
 
@@ -52,25 +57,27 @@
             var directionalLight = new THREE.DirectionalLight( color );
             directionalLight.position.set(x, y, z).normalize();
             directionalLight.intensity = intense;
-            scene.add( directionalLight );//top
+            scene1.add( directionalLight );//top
+            //scene2.add( directionalLight );
 
             directionalLight = new THREE.DirectionalLight( color );
             directionalLight.position.set(-x, -y, -z).normalize();
             directionalLight.intensity = intense;
-            scene.add(directionalLight);//bottom
+            scene1.add(directionalLight);//bottom
 
             directionalLight = new THREE.DirectionalLight(color);
             directionalLight.position.set(-x, 0, 0).normalize();
             directionalLight.intensity = intense;
-            scene.add(directionalLight); //left
+            scene1.add(directionalLight); //left
 
 			directionalLight = new THREE.DirectionalLight(color);
             directionalLight.position.set(x, 0, 0).normalize();
             directionalLight.intensity = intense;
-            scene.add(directionalLight); //right
+            scene1.add(directionalLight); //right
 
 			var light = new THREE.HemisphereLight( color, 0x000000, intense );
-			scene.add( light );
+			scene1.add( light );
+            //scene2.add( light.clone() );
         }
         function loadObject() {
             topp = LoadTop(1,0,-.5);
@@ -86,30 +93,45 @@
             laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd/*,bus,bottom*/);
             laptopFull.rotation.y = Math.PI / 2;
 			laptopFull.position.y = -2;
-            scene.add(laptopFull);
+            scene1.add(laptopFull);
         }
 
         function init() {
 
-            scene = new THREE.Scene();
+            scene1 = new THREE.Scene();
 
-            camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-            camera.position.z = -30;
-			camera.position.y = 5;
+            camera1 = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight - window.innerHeight / 4), 1, 10000 );
+            camera1.position.z = -30;
+			camera1.position.y = 5;
 
             loadObject();
             threePointLight();
 
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: true} );
-            renderer.shadowMapEnabled = true;
-			renderer.setClearColor( 0xb2b2b2, 1 );
-            renderer.setPixelRatio( window.devicePixelRatio );
-            renderer.setSize( window.innerWidth, window.innerHeight );
+            renderer1 = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: true} );
+            renderer1.shadowMap.enabled = true;
+			renderer1.setClearColor( 0xb2b2b2, 1 );
+            renderer1.setPixelRatio( window.devicePixelRatio );
+            renderer1.setSize( window.innerWidth, window.innerHeight - window.innerHeight / 3 );
 
             // Add OrbitControls so that we can pan around with the mouse.
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls = new THREE.OrbitControls(camera1, renderer1.domElement);
             controls.target.set(0,0,0);
-            document.body.appendChild( renderer.domElement );
+            document.body.appendChild( renderer1.domElement );
+            
+            scene2 = new THREE.Scene();
+            
+            camera2 = new THREE.PerspectiveCamera( 75, (window.innerWidth / 2) / (window.innerHeight / 3), 1, 4000 );
+            camera2.position.z = -30;
+            camera2.position.y = 5;
+            camera2.lookAt( ssd.position);
+            
+            scene2.add(ssd.clone());
+            
+            renderer2 = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: true} );
+            renderer2.shadowMap.enabled = true;
+            renderer2.setClearColor(0xb2b2b2, 1);
+            renderer2.setSize( window.innerWidth / 2, window.innerHeight / 3 );
+            document.body.appendChild( renderer2.domElement );
         }
         
       function setupGui() {
@@ -150,12 +172,16 @@
         rotate(controls.rotation);
         
         // field of view controller updater
-        camera.fov = effectController.fieldOfView;
-        camera.updateProjectionMatrix();
+        camera1.fov = effectController.fieldOfView;
+        camera1.updateProjectionMatrix();
+        
+        camera2.updateProjectionMatrix();
+        
         
 		// must do these two statements
-		renderer.render( scene, camera ); 
-		controls.update();
+		renderer1.render( scene1, camera1 ); 
+        renderer2.render( scene2, camera2 );
+		//controls.update();
 
 	}
   </script>
