@@ -1,5 +1,5 @@
 # Blender MTL File: 'laptop-top.blend'
-# Material Count: 5
+# Material Count: 3
 
 newmtl Merged_MeshesDefault
 Ns 96.078431
@@ -10,28 +10,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd textures/freya.jpg
-
-newmtl Merged_MeshesDefault_NONE
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.690196 0.690196 0.690196
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-
-newmtl Merged_MeshesDefault_aluminum2.jpg
-Ns 96.078431
-Ka 1.000000 1.000000 1.000000
-Kd 0.690196 0.690196 0.690196
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd /home/rhuarc/Documents/Programming/Web/VNAness/VNAness/aluminum2.jpg
+map_Kd textures/blackMatteAluminum.jpg
 
 newmtl Merged_MeshesDefault_aluminumMatteGray.jpg
 Ns 96.078431
@@ -44,7 +23,7 @@ d 1.000000
 illum 2
 map_Kd textures/aluminumMatteGray.jpg
 
-newmtl Merged_MeshesDefault_blackMatteAluminum.jpg
+newmtl Merged_MeshesDefault_freya.jpg.001
 Ns 96.078431
 Ka 1.000000 1.000000 1.000000
 Kd 0.690196 0.690196 0.690196
@@ -53,4 +32,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /home/rhuarc/Documents/Programming/Web/VNAness/VNAness/blackMatteAluminum.jpg
+map_Kd textures/freya.jpg
