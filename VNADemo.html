@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="threeJS/dat.gui.js"></script>
 	<script src='./objects.js'></script>
 	<script src='./controls.js'></script>
+	<script src='./descriptions.js'></script>
 	<script type="text/javascript">
 
 		//things to hold things
@@ -147,6 +148,7 @@
 				selected = laptopFull.getObjectById(intersects[ 0 ].object.id, true);
 				console.log(selected.parent.parent.parent.name);
 			}
+			getDescription(selected.parent.parent.parent.name);
 	   	}
 		
 		//unselect
@@ -210,7 +212,7 @@
 			renderer.render( scene, camera ); 
 			//controls.update();
 		}
-
+	
 </script>
 </body>
 </html>
