@@ -144,7 +144,7 @@
 				
 				//store and log what is selected
 				selected = laptopFull.getObjectById(intersects[ 0 ].object.id, true);
-				console.log(selected);
+				console.log(selected.parent.parent.parent.name);
 			}
 	   	}
 		
@@ -153,9 +153,6 @@
 			//console.log(topp);
 			selected.material.color.setHex(highlight);
 			selected = null;
-			}
-			else{
-				console.log("error: item still selected")
 			}
 		}
 		function init() {
