@@ -20,10 +20,9 @@
 	<script src='./controls.js'></script>
 	<script type="text/javascript">
 
-		//things
-		var scene, camera, renderer, projector;
+		//things to hold things
+		var scene, camera, renderer, projector, highlight;
         
-		//var topp, motherboard, cpu, gpu, ram, ssd, battery, dvd, bus, bottom;
       	//object
 		var topp = new THREE.Object3D();
      	var motherboard = new THREE.Object3D();
@@ -40,13 +39,15 @@
 		//gui
 		var gui = new dat.GUI();
 		
+		//nothing is currently selected
 		var selected = null;
-		var highlight;
 		
+		//run the program
 		init();
 		setupGui();
 		animate();
-
+		
+		//setup all the lighting
 		function threePointLight() {
 			var x;
 			var y;
@@ -79,6 +80,7 @@
 			scene.add( light );
          }
 
+		//load all the pieces of the laptop, add them to a container, and add them to the scene
         function loadObject() {
          	topp = LoadTop(1,0,-.5);
          	motherboard = LoadMotherboard(.505,0,0);
@@ -96,6 +98,7 @@
             scene.add(laptopFull);			
          }
 
+		//setup the GUI and controls
 		function setupGui() {
 			effectController = {	fieldOfView:40 };
 			controls = new function() {
@@ -113,6 +116,7 @@
 			//element.name("field of view");
 		}
 
+		//onclick events
 	   	function onDocumentMouseDown( event ) {
 			//ignore random mouse twitches
 			event.preventDefault();
@@ -130,10 +134,8 @@
 			
 			//calculate the intersections
 			var intersects = raycaster.intersectObjects( laptopFull.children, true  );
-		
 			//unselect the last item
 			unselectLast();
-			
 			//select the new item
 			if (intersects.length > 0 && selected == null) {
 				//save the color of the intersected object
@@ -141,31 +143,32 @@
 				console.log(highlight);
 				//toggle change to show that the intersected object is selected
 				intersects[ 0 ].object.material.color.setHex(0xFF8C00);
-				
 				//store and log what is selected
 				selected = laptopFull.getObjectById(intersects[ 0 ].object.id, true);
 				console.log(selected.parent.parent.parent.name);
 			}
 	   	}
 		
+		//unselect
 		function unselectLast() {
 			if(selected != null){
-			//console.log(topp);
 			selected.material.color.setHex(highlight);
 			selected = null;
 			}
 		}
+		
+		//initialize all the things
 		function init() {
-
+			//create a scene
 				scene = new THREE.Scene();
-			
+			//setup the camera
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = -30;
 				camera.position.y = 5;
-
+			//load objects and light em up
 				loadObject();
 				threePointLight();
-
+			//set up renderer
 				renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true} );
 				renderer.shadowMap.enabled;
 				renderer.setClearColor( 0xb2b2b2, 1 );
@@ -177,7 +180,7 @@
 				// Add OrbitControls so that we can pan around with the mouse.
 				controls = new THREE.OrbitControls(camera, renderer.domElement);
 				controls.target.set(0,0,0);
-
+			//add an event listener for mouse clicks
 				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 			}
 
