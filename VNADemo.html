@@ -1,46 +1,54 @@
 <html>
 <head>
-    <title>VonNeumann demo app</title>
-    <style>
-        body { margin: 0; }
-        canvas { width: 100%; height: 100% }
-    </style>
+	<title>VonNeumann demo app</title>
+	<style>
+		body { margin: 0; }
+		canvas { width: 100%; height: 100% }
+	</style>
 </head>
 <body>
 
-    <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
-    <script src='threeJS/three.js'></script>
-    <script src='threeJS/OrbitControls.js'></script>
-    <script src='threeJS/OBJLoader.js'></script>
+	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	<script src='threeJS/three.js'></script>
+	<script src='threeJS/OrbitControls.js'></script>
+	<script src='threeJS/Projector.js'></script>
+	<script src='threeJS/OBJLoader.js'></script>
 	<script src='threeJS/OBJMTLLoader.js'></script>
 	<script src='threeJS/MTLLoader.js'></script>
-    <script type="text/javascript" src="threeJS/dat.gui.js"></script>
-    <script src='./objects.js'></script>
-    <script src='./controls.js'></script>
-    <script type="text/javascript">
+	<script type="text/javascript" src="threeJS/dat.gui.js"></script>
+	<script src='./objects.js'></script>
+	<script src='./controls.js'></script>
+	<script type="text/javascript">
 
-        var scene, camera, renderer;
-        var geometry, material, mesh;
-        var topp = new THREE.Object3D();
-        var motherboard = new THREE.Object3D();
-        var cpu = new THREE.Object3D();
-        var gpu = new THREE.Object3D();
-        var ram = new THREE.Object3D();
-        var ssd = new THREE.Object3D();
-        var battery = new THREE.Object3D();
-        var dvd = new THREE.Object3D();
-        var bus = new THREE.Object3D();
-        var bottom = new THREE.Object3D();
-        var gui = new THREE.Object3D();
-        var laptopFull = new THREE.Object3D();
+		//things to hold things
+		var scene, camera, renderer, projector, highlight;
+        
+      	//object
+		var topp = new THREE.Object3D();
+     	var motherboard = new THREE.Object3D();
+		var cpu = new THREE.Object3D();
+		var gpu = new THREE.Object3D();
+		var ram = new THREE.Object3D();
+		var ssd = new THREE.Object3D();
+		var battery = new THREE.Object3D();
+		var dvd = new THREE.Object3D();
+		var bus = new THREE.Object3D();
+		var bottom = new THREE.Object3D();
+		var laptopFull = new THREE.Object3D();
 
-        gui = new dat.GUI();
-
-        init();
-        setupGui();
-        animate();
-
-        function threePointLight() {
+		//gui
+		var gui = new dat.GUI();
+		
+		//nothing is currently selected
+		var selected = null;
+		
+		//run the program
+		init();
+		setupGui();
+		animate();
+		
+		//setup all the lighting
+		function threePointLight() {
 			var x;
 			var y;
 			var z;
@@ -48,115 +56,161 @@
 			var intense =.5;
 			var color = 0xffffff;
 
-            var directionalLight = new THREE.DirectionalLight( color );
-            directionalLight.position.set(x, y, z).normalize();
-            directionalLight.intensity = intense;
-            scene.add( directionalLight );//top
+			var directionalLight = new THREE.DirectionalLight( color );
+			directionalLight.position.set(x, y, z).normalize();
+			directionalLight.intensity = intense;
+         	scene.add( directionalLight );//top
 
-            directionalLight = new THREE.DirectionalLight( color );
-            directionalLight.position.set(-x, -y, -z).normalize();
-            directionalLight.intensity = intense;
-            scene.add(directionalLight);//bottom
-
-            directionalLight = new THREE.DirectionalLight(color);
-            directionalLight.position.set(-x, 0, 0).normalize();
-            directionalLight.intensity = intense;
-            scene.add(directionalLight); //left
+         	directionalLight = new THREE.DirectionalLight( color );
+			directionalLight.position.set(-x, -y, -z).normalize();
+			directionalLight.intensity = intense;
+			scene.add(directionalLight);//bottom
 
 			directionalLight = new THREE.DirectionalLight(color);
-            directionalLight.position.set(x, 0, 0).normalize();
-            directionalLight.intensity = intense;
-            scene.add(directionalLight); //right
+			directionalLight.position.set(-x, 0, 0).normalize();
+			directionalLight.intensity = intense;
+			scene.add(directionalLight); //left
+
+			directionalLight = new THREE.DirectionalLight(color);
+			directionalLight.position.set(x, 0, 0).normalize();
+			directionalLight.intensity = intense;
+			scene.add(directionalLight); //right
 
 			var light = new THREE.HemisphereLight( color, 0x000000, intense );
 			scene.add( light );
-        }
+         }
+
+		//load all the pieces of the laptop, add them to a container, and add them to the scene
         function loadObject() {
-            topp = LoadTop(1,0,-.5);
-            motherboard = LoadMotherboard(.505,0,0);
-            cpu = LoadCPU(.85,0,-.25);
-            gpu = LoadGPU(.85,0,-2.25);
-            ram = LoadRAM(.25,0,-.25);
-            ssd = LoadSSD(.4,0,0);
-            battery = LoadBattery(.45,0,-.1);
-            dvd = LoadDVD(.4,90,-.15);
+         	topp = LoadTop(1,0,-.5);
+         	motherboard = LoadMotherboard(.505,0,0);
+         	cpu = LoadCPU(.85,0,-.25);
+         	gpu = LoadGPU(.85,0,-2.25);
+         	ram = LoadRAM(.25,0,-.25);
+         	ssd = LoadSSD(.4,0,0);
+         	battery = LoadBattery(.45,0,-.1);
+         	dvd = LoadDVD(.4,90,-.15);
             //bus = LoadBus(1,0,1);
-            //bottom = LoadBottom(1,0,-2);
+            //bottom = LoadBottom(1,0,-2);			
             laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd/*,bus,bottom*/);
             laptopFull.rotation.y = Math.PI / 2;
-			laptopFull.position.y = -2;
-            scene.add(laptopFull);
-        }
+            laptopFull.position.y = -2;
+            scene.add(laptopFull);			
+         }
 
-        function init() {
+		//setup the GUI and controls
+		function setupGui() {
+			effectController = {	fieldOfView:40 };
+			controls = new function() {
+			this.rotation = 0;
+			this.expand = 0;
+			//this.zoom = 0;
+			this.reset = false;
+			}  
+			//controls.reset.onclick(expand(0));
+			//var element = 
+			gui.add(effectController, "fieldOfView", 1.0, 179.0);
+			gui.add(controls, 'rotation', 0.0, 10.0);
+			gui.add(controls, 'expand', 0, 5);
+			gui.add(controls, 'reset');   
+			//element.name("field of view");
+		}
 
-            scene = new THREE.Scene();
+		//onclick events
+	   	function onDocumentMouseDown( event ) {
+			//ignore random mouse twitches
+			event.preventDefault();
+			//get the mouse postition
+			var mouseX = (event.clientX / window.innerWidth)*2-1;
+			var mouseY = -(event.clientY /window.innerHeight)*2+1;
+			//create a 3d vector to shoot into the 3d space
+			var vector = new THREE.Vector3( mouseX, mouseY, 0.5 );
+			//create a new projector
+			projector = new THREE.Projector();
+			//project out from camera position
+			projector.unprojectVector( vector, camera );
+			//create a raycaster that excludes the camera
+			var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+			
+			//calculate the intersections
+			var intersects = raycaster.intersectObjects( laptopFull.children, true  );
+			//unselect the last item
+			unselectLast();
+			//select the new item
+			if (intersects.length > 0 && selected == null) {
+				//save the color of the intersected object
+				highlight = intersects[ 0 ].object.material.color.getHex();
+				console.log(highlight);
+				//toggle change to show that the intersected object is selected
+				intersects[ 0 ].object.material.color.setHex(0xFF8C00);
+				//store and log what is selected
+				selected = laptopFull.getObjectById(intersects[ 0 ].object.id, true);
+				console.log(selected.parent.parent.parent.name);
+			}
+	   	}
+		
+		//unselect
+		function unselectLast() {
+			if(selected != null){
+			selected.material.color.setHex(highlight);
+			selected = null;
+			}
+		}
+		
+		//initialize all the things
+		function init() {
+			//create a scene
+				scene = new THREE.Scene();
+			//setup the camera
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = -30;
+				camera.position.y = 5;
+			//load objects and light em up
+				loadObject();
+				threePointLight();
+			//set up renderer
+				renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true} );
+				renderer.shadowMap.enabled;
+				renderer.setClearColor( 0xb2b2b2, 1 );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.sortObjects = false;
+				document.body.appendChild( renderer.domElement );
 
-            camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-            camera.position.z = -30;
-			camera.position.y = 5;
+				// Add OrbitControls so that we can pan around with the mouse.
+				controls = new THREE.OrbitControls(camera, renderer.domElement);
+				controls.target.set(0,0,0);
+			//add an event listener for mouse clicks
+				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+			}
 
-            loadObject();
-            threePointLight();
+		// This function is called many times a second.  You do anything that needs to be updated, changed, moved here
+		function animate() {
+			requestAnimationFrame( animate );
 
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, premultipliedAlpha: true} );
-            renderer.shadowMapEnabled = true;
-			renderer.setClearColor( 0xb2b2b2, 1 );
-            renderer.setPixelRatio( window.devicePixelRatio );
-            renderer.setSize( window.innerWidth, window.innerHeight );
+			//expand control
+			expand(controls.expand);
+			//reset control
+			if(controls.reset == true)
+			{
+				expand(0);
+				rotate(0);
+				controls.reset = false;
+				controls.expand = 0;
+				controls.rotation = 0;
+			}
+			//rotate control
+			rotate(controls.rotation);
 
-            // Add OrbitControls so that we can pan around with the mouse.
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.target.set(0,0,0);
-            document.body.appendChild( renderer.domElement );
-        }
-        
-      function setupGui() {
-        effectController = {
-              fieldOfView:40
-          };
-        controls = new function() {
-            this.rotation = 0;
-            this.expand = 0;
-            //this.zoom = 0;
-            this.reset = false;//function() { ); };
-        }  
-       //controls.reset.onclick(expand(0));
-        //var element = 
-        gui.add(effectController, "fieldOfView", 1.0, 179.0);
-        gui.add(controls, 'rotation', 0.0, 10.0);
-        gui.add(controls, 'expand', 0, 5);
-        gui.add(controls, 'reset');   
-        //element.name("field of view");
-         
-    }
-		// This function is called many times a second.  You do anything that
-		// needs to be updated, changed, moved here
-	function animate() {
+			// field of view controller updater
+			camera.fov = effectController.fieldOfView;
+			camera.updateProjectionMatrix();		
 
-		requestAnimationFrame( animate );
-        
-        expand(controls.expand);
-        if(controls.reset == true)
-            {
-                expand(0);
-                rotate(0);
-                controls.reset = false;
-                controls.expand = 0;
-                controls.rotation = 0;
-                
-            }
-        rotate(controls.rotation);
-        
-        // field of view controller updater
-        camera.fov = effectController.fieldOfView;
-        camera.updateProjectionMatrix();
-        
-		// must do these two statements
-		renderer.render( scene, camera ); 
-		controls.update();
+			// must do these two statements
+			renderer.render( scene, camera ); 
+			//controls.update();
+		}
 
-	}
-  </script>
+</script>
 </body>
 </html>

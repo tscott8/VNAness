@@ -5,7 +5,7 @@ function resetLaptop() {
 }
 
 function expand(percent) {
-    topp.position.y = 3 * percent;
+    topp.position.y = 3.5 * percent;
     cpu.position.y = 1 * percent;
     gpu.position.y = 1 * percent;
     ram.position.y = 2 * percent;
