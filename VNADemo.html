@@ -92,8 +92,8 @@
          	battery = LoadBattery(.45,0,-.1);
          	dvd = LoadDVD(.4,90,-.15);
             //bus = LoadBus(1,0,1);
-            //bottom = LoadBottom(1,0,-2);			
-            laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd/*,bus,bottom*/);
+            bottom = LoadBottom(.875,0,-.5);			
+            laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd/*,bus*/,bottom);
             laptopFull.rotation.y = Math.PI / 2;
             laptopFull.position.y = -2;
             scene.add(laptopFull);			

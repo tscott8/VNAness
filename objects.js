@@ -4,10 +4,10 @@ function LoadTop(scale, rotate, pos){
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/laptop-top.obj", "objects/laptop-top.mtl",
 		function ( obj ) {
-      	obj.traverse( function (child) {
-    	if (child instanceof THREE.Mesh) {
-		}
-		});
+//      	obj.traverse( function (child) {
+//    	if (child instanceof THREE.Mesh) {
+//		}
+//		});
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
@@ -26,9 +26,9 @@ function LoadMotherboard(scale, rotate, pos){
 			obj.position.y = pos;
 			obj.position.x = 1.28;
 			obj.position.z = 2.0;
-		motherboardLoad.add(obj);
+			motherboardLoad.add(obj);
 		});
-return motherboardLoad;
+	return motherboardLoad;
 }
 function LoadCPU(scale, rotate, pos){
 	var cpuLoad = new THREE.Object3D();
@@ -61,20 +61,20 @@ function LoadGPU(scale, rotate, pos){
 return gpuLoad;
 }
 function LoadRAM(scale, rotate, pos){
-var ramLoad = new THREE.Object3D();
+	var ramLoad = new THREE.Object3D();
 	ramLoad.name = "ram";
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/ram.obj", "objects/ram.mtl",
 		function ( obj ) {
-		obj.scale.x = obj.scale.y = obj.scale.z = scale;
-		obj.rotation.z = 90 * Math.PI / 180;
-		obj.rotation.x = 90 * Math.PI / 180;
-		obj.rotation.y = rotate;
+			obj.scale.x = obj.scale.y = obj.scale.z = scale;
+			obj.rotation.z = 90 * Math.PI / 180;
+			obj.rotation.x = 90 * Math.PI / 180;
+			obj.rotation.y = rotate;
 			obj.position.y = pos;
-		obj.position.x = 2.85;
-		ramLoad.add(obj);
+			obj.position.x = 2.85;
+			ramLoad.add(obj);
 		});
-return ramLoad;
+	return ramLoad;
 }
 function LoadSSD(scale, rotate, pos){
 	var ssdLoad = new THREE.Object3D();
@@ -82,16 +82,16 @@ function LoadSSD(scale, rotate, pos){
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/ssd.obj", "objects/ssd.mtl",
 		function ( obj ) {
-		obj.scale.x = obj.scale.y = obj.scale.z = scale;
-		obj.scale.y = .25;
-		obj.rotation.x = 180 * Math.PI/180;
+			obj.scale.x = obj.scale.y = obj.scale.z = scale;
+			obj.scale.y = .25;
+			obj.rotation.x = 180 * Math.PI/180;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
 			obj.position.x = 5;
 			obj.position.z = 4.5;
-		ssdLoad.add(obj);
+			ssdLoad.add(obj);
 		});
-return ssdLoad;
+	return ssdLoad;
 }
 function LoadBattery(scale, rotate, pos){
 	var batteryLoad = new THREE.Object3D();
@@ -99,34 +99,34 @@ function LoadBattery(scale, rotate, pos){
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/battery.obj", "objects/battery.mtl",
 		function ( obj ) {
-		obj.scale.x = obj.scale.y = obj.scale.z = scale;
-		obj.scale.y = .25;
+			obj.scale.x = obj.scale.y = obj.scale.z = scale;
+			obj.scale.y = .25;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
 			obj.position.x = 5;
 			obj.position.z = -2.5;
-		batteryLoad.add(obj);
+			batteryLoad.add(obj);
 		});
-return batteryLoad;
+	return batteryLoad;
 }
 function LoadDVD(scale, rotate, pos){
 	var dvdLoad = new THREE.Object3D();
-dvdLoad.name = "dvd";
+	dvdLoad.name = "dvd";
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/cd_dvd.obj", "objects/cd_dvd.mtl",
 		function ( obj ) {
-		obj.scale.x = obj.scale.y = obj.scale.z = scale;
-		obj.scale.y = .2;
-		obj.rotation.y = rotate * Math.PI/180;
-		obj.position.y = pos;
-		obj.position.z = -4.1;
-		obj.position.x = .4;
-		dvdLoad.add(obj);
+			obj.scale.x = obj.scale.y = obj.scale.z = scale;
+			obj.scale.y = .2;
+			obj.rotation.y = rotate * Math.PI/180;
+			obj.position.y = pos;
+			obj.position.z = -4.1;
+			obj.position.x = .4;
+			dvdLoad.add(obj);
 		});
-return dvdLoad;
+	return dvdLoad;
 }
 function LoadBus(scale, rotate, pos){
-var busLoad = new THREE.Object3D();
+	var busLoad = new THREE.Object3D();
 	busLoad.name = "bus";
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/bus.obj", "objects/bus.mtl",
@@ -134,9 +134,9 @@ var busLoad = new THREE.Object3D();
 		obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
-		busLoad.add(obj);
+			busLoad.add(obj);
 		});
-return busLoad;
+	return busLoad;
 }
 function LoadBottom(scale, rotate, pos){
 	var bottomLoad = new THREE.Object3D();
@@ -147,7 +147,8 @@ function LoadBottom(scale, rotate, pos){
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
-		bottomLoad.add(obj);
+			obj.position.x = .15;
+			bottomLoad.add(obj);
 		});
-return bottomLoad;
+	return bottomLoad;
 }
