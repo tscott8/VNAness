@@ -129,7 +129,7 @@
 			intersects = raycaster.intersectObjects( laptopFull.children, true  );
 			intersects[ 0 ].object.material.wireframe = !intersects[ 0 ].object.material.wireframe;
 			//intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff);
-			console.log(intersects[0].object);//object.parent.parent.parent.name);
+			console.log(intersects[0].object.parent.parent.parent.name);
 			
 
 	   	}
