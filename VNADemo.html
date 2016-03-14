@@ -21,7 +21,7 @@
 	<script type="text/javascript">
 
 		//things
-		var scene, camera, renderer, projector;
+		var scene, camera, renderer, projector, intersects;
         
 		//var topp, motherboard, cpu, gpu, ram, ssd, battery, dvd, bus, bottom;
       	//object
@@ -87,6 +87,14 @@
          	dvd = LoadDVD(.4,90,-.15);
             //bus = LoadBus(1,0,1);
             //bottom = LoadBottom(1,0,-2);
+			topp.name = "top";
+			motherboard.name = "motherboard";
+			cpu.name = "cpu";
+			gpu.name = "gpu";
+			ram.name = "ram";
+			ssd.name = "ssd";
+			battery.name = "battery";
+			dvd.name = "dvd";
             laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd/*,bus,bottom*/);
             laptopFull.rotation.y = Math.PI / 2;
             laptopFull.position.y = -2;
@@ -118,16 +126,18 @@
 			projector = new THREE.Projector();
 			projector.unprojectVector( vector, camera );
 			var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-			var intersects = raycaster.intersectObjects( scene.children, true  );
-			intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff);
-			console.log(intersects[0].object);
+			intersects = raycaster.intersectObjects( laptopFull.children, true  );
+			intersects[ 0 ].object.material.wireframe = !intersects[ 0 ].object.material.wireframe;
+			//intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff);
+			console.log(intersects[0].object);//object.parent.parent.parent.name);
+			
+
 	   	}
 
 		function init() {
 
 				scene = new THREE.Scene();
-//				projector = new THREE.Projector();
-
+			
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = -30;
 				camera.position.y = 5;

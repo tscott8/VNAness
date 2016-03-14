@@ -3,6 +3,11 @@ function LoadTop(scale, rotate, pos){
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/laptop-top.obj", "objects/laptop-top.mtl",
 		function ( obj ) {
+//		  obj.traverse( function ( child ) {
+//        	if ( child instanceof THREE.Mesh ) {
+//            //The child is the bit needed for the raycaster.intersectObject() method
+//        	}
+//		  	} );
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
