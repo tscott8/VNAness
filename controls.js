@@ -1,6 +1,5 @@
 function resetLaptop() {
-    expand(0);
-    
+    expand(0);   
     //controls.zoom = 0;
 }
 
@@ -14,7 +13,7 @@ function expand(percent) {
     dvd.position.y = -1 * percent;
     bus.position.y = -2 * percent;
     bottom.position.y = -4 * percent;
-} 
+}
 
 function zoom() {
     
@@ -25,7 +24,7 @@ function rotate(degree) {
     laptopFull.rotation.y = degree + Math.PI / 2;
 }
 
-function select(id,laptop) {
+function select(id, laptop) {
     var item = laptop.getPartById(id);
     highlight(item);
     zoom(item);
