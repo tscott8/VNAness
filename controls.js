@@ -1,7 +1,12 @@
-function resetLaptop() {
-    expand(0);   
-    //controls.zoom = 0;
+function resetLaptop()
+{
+    expand(0);
+    rotate(0);
+    controls.expand = 0;
+    controls.rotation = 0;
+    controls.fieldOfView = 40;
 }
+
 
 function expand(percent) {
     topp.position.y = 3.5 * percent;
