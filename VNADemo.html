@@ -4,11 +4,29 @@
 	<style>
 		body { margin: 0; }
 		canvas { width: 100%; height: 100% }
+        #descriptions {
+            position: relative;
+            left: 0px;
+            top: 75%;
+            width: 50%;
+            height: auto;
+            background-color: rgb(10, 3, 10);
+            color: white;
+            z-index: 10;
+            visibility: hidden;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
 	</style>
 </head>
 <body>
 
-	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	<div id="ThreeJS" style="position: absolute; left:0px; top:0px">
+    </div>
+    <div style="width: 100%; height:25%; position: absolute; left: 0px; top: 45%;">
+        <div id="descriptions"></div>
+    </div>
 	<script src='threeJS/three.js'></script>
 	<script src='threeJS/OrbitControls.js'></script>
 	<script src='threeJS/Projector.js'></script>
@@ -154,8 +172,9 @@
 		//unselect
 		function unselectLast() {
 			if(selected != null){
-			selected.material.color.setHex(highlight);
-			selected = null;
+                selected.material.color.setHex(highlight);
+                selected = null;
+                document.getElementById('descriptions').style.visibility = "hidden";
 			}
 		}
 		
