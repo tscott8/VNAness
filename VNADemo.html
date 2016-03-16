@@ -55,8 +55,7 @@
 		var bus = new THREE.Object3D();
 		var bottom = new THREE.Object3D();
 		var laptopFull = new THREE.Object3D();
-        var sprite1;
-        var canvas1, context1, texture1;
+        
 		//gui
 		var gui = new dat.GUI();
 		
@@ -132,7 +131,6 @@
 			gui.add(controls, 'rotation', 0.0, 10.0);
 			gui.add(controls, 'expand', 0, 5);
 			gui.add(controls, 'reset').name("Reset Laptop Parameters");
-			//element.name("field of view");
 		}
 
 		//onclick events
@@ -203,16 +201,6 @@
 				controls.target.set(0,0,0);
 			//add an event listener for mouse clicks
 				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-            
-                var spritey = makeTextSprite( " Hello, ", 
-		          { fontsize: 24, borderColor: {r:255, g:0, b:0, a:1.0}, backgroundColor: {r:255, g:100, b:100, a:0.8} } );
-	           spritey.position.set(-35,10,25);
-	           scene.add( spritey );
-
-	           var spritey = makeTextSprite( descriptions.top, 
-		          { fontsize: 15, fontface: "Georgia", borderColor: {r:0, g:0, b:255, a:1.0} } );
-	           spritey.position.set(35,10,25);
-	           scene.add( spritey );
 			}
    
 
