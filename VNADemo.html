@@ -20,36 +20,29 @@
 	<style>
 		body { margin: 0; }
 		canvas { width: 100%; height: 100% }
-        #descriptions {
-            left: 0;
+      #descriptions {
+         left: 0;
 			top: 0;
-            width: 25%;
-            height: auto;
-            visibility: hidden;
-            text-align: center;
-            margin-left: 1%;
-            margin-top: 1%;
-			position: absolute;
-        }
+         width: 25%;
+         height: auto;
+         visibility: hidden;
+         text-align: center;
+         margin-left: 1%;
+         margin-top: 1%;
+      }
 		.modal-header, .modal-body, .modal-footer, .alert-info, .btn {
-			padding:9px 15px;
-    		border:1px solid #eee;
+			padding: 9px 15px;
+    		border: 1px solid #eee;
     		background-color: #000000;
 			border-radius: 5px;
 			color: white;
-		}
-	
+		}	
 	</style>
 </head>
 <body>
 
-   	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
-	
-	<script> 
-        $(document).ready(function () { $('#infoModal').modal('show'); });
-	</script> 
-
-	
+   <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	<script> $(document).ready(function () { $('#infoModal').modal('show'); }); </script> 
 	<div class="modal fade" id="infoModal" role="dialog"> 
 		 <div class="modal-dialog"> 
 			 <div class="modal-content "> 
@@ -75,18 +68,17 @@
 			 </div> 
 		</div>
 	</div>
-	
 
 	
-	 <div style="width: 100%; height:25%; position: absolute;">
-        <div id="descriptions" class="alert alert-info"></div>
-    </div>
+	<div style="width: 100%; height:25%; position:absolute;">
+      <div id="descriptions" class="alert alert-info"></div>
+   </div>
 	<script type="text/javascript">
 
 		//things to hold things
 		var scene, camera, renderer, projector, highlight, savePosition;
         
-      	//object
+      //object
 		var topp = new THREE.Object3D();
      	var motherboard = new THREE.Object3D();
 		var cpu = new THREE.Object3D();
@@ -109,9 +101,7 @@
 		init();
 		setupGui();
 		animate();
-		
-	
-	</script>
 
+	</script>
 </body>
 </html>

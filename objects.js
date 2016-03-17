@@ -4,10 +4,6 @@ function LoadTop(scale, rotate, pos) {
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/laptop-top.obj", "objects/laptop-top.mtl",
 		function (obj) {
-//obj.traverse( function (child) {
-//if (child instanceof THREE.Mesh) {
-//}
-//});
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
@@ -21,7 +17,7 @@ function LoadMotherboard(scale, rotate, pos) {
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/motherboard.obj", "objects/motherboard.mtl",
 		function (obj) {
-		obj.scale.x = obj.scale.y = obj.scale.z = scale;
+			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
 			obj.position.x = 1.28;
@@ -131,7 +127,7 @@ function LoadBus(scale, rotate, pos) {
 	var loader = new THREE.OBJMTLLoader();
 	loader.load("objects/bus.obj", "objects/bus.mtl",
 		function (obj) {
-		obj.scale.x = obj.scale.y = obj.scale.z = scale;
+			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
 			busLoad.add(obj);
