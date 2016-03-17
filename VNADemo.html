@@ -4,11 +4,29 @@
 	<style>
 		body { margin: 0; }
 		canvas { width: 100%; height: 100% }
+        #descriptions {
+            position: relative;
+            left: 0px;
+            top: 75%;
+            width: 50%;
+            height: auto;
+            background-color: rgb(10, 3, 10);
+            color: white;
+            z-index: 10;
+            visibility: hidden;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
 	</style>
 </head>
 <body>
 
-	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	<div id="ThreeJS" style="position: absolute; left:0px; top:0px">
+    </div>
+    <div style="width: 100%; height:25%; position: absolute; left: 0px; top: 45%;">
+        <div id="descriptions"></div>
+    </div>
 	<script src='threeJS/three.js'></script>
 	<script src='threeJS/OrbitControls.js'></script>
 	<script src='threeJS/Projector.js'></script>
@@ -19,6 +37,7 @@
 	<script src='./objects.js'></script>
 	<script src='./controls.js'></script>
 	<script src='./descriptions.js'></script>
+    <!--<script src='threeJS/info.js'></script>-->
 	<script type="text/javascript">
 
 		//things to hold things
@@ -36,7 +55,7 @@
 		var bus = new THREE.Object3D();
 		var bottom = new THREE.Object3D();
 		var laptopFull = new THREE.Object3D();
-
+        
 		//gui
 		var gui = new dat.GUI();
 		
@@ -105,16 +124,13 @@
 			controls = new function() {
 			this.rotation = 0;
 			this.expand = 0;
-			//this.zoom = 0;
-			this.reset = false;
+			this.reset = function() { resetLaptop() }
 			}  
-			//controls.reset.onclick(expand(0));
-			//var element = 
-			gui.add(effectController, "fieldOfView", 1.0, 179.0);
+            
+			gui.add(effectController, "fieldOfView", 1.0, 150.0);
 			gui.add(controls, 'rotation', 0.0, 10.0);
 			gui.add(controls, 'expand', 0, 5);
-			gui.add(controls, 'reset');   
-			//element.name("field of view");
+			gui.add(controls, 'reset').name("Reset Laptop Parameters");
 		}
 
 		//onclick events
@@ -154,8 +170,9 @@
 		//unselect
 		function unselectLast() {
 			if(selected != null){
-			selected.material.color.setHex(highlight);
-			selected = null;
+                selected.material.color.setHex(highlight);
+                selected = null;
+                document.getElementById('descriptions').style.visibility = "hidden";
 			}
 		}
 		
@@ -185,6 +202,7 @@
 			//add an event listener for mouse clicks
 				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 			}
+   
 
 		// This function is called many times a second.  You do anything that needs to be updated, changed, moved here
 		function animate() {
@@ -193,14 +211,14 @@
 			//expand control
 			expand(controls.expand);
 			//reset control
-			if(controls.reset == true)
-			{
-				expand(0);
-				rotate(0);
-				controls.reset = false;
-				controls.expand = 0;
-				controls.rotation = 0;
-			}
+//			if(controls.reset == true)
+//			{
+//				expand(0);
+//				rotate(0);
+//				//controls.reset = false;
+//				controls.expand = 0;
+//				controls.rotation = 0;
+//			}
 			//rotate control
 			rotate(controls.rotation);
 

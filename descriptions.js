@@ -13,4 +13,11 @@ var descriptions = {
 function getDescription(part) {
 	console.log(part);
 	console.log(descriptions[part]);
+    console.log("selected = " + selected);
+    
+    if (selected != null) {
+        document.getElementById('descriptions').style.visibility = "visible";
+        document.getElementById('descriptions').innerHTML = descriptions[part];
+    } 
+        
 }

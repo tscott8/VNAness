@@ -1,6 +1,10 @@
-function resetLaptop() {
-    expand(0);   
-    //controls.zoom = 0;
+function resetLaptop()
+{
+    expand(0);
+    rotate(0);
+    controls.expand = 0;
+    controls.rotation = 0;
+    controls.fieldOfView = 40;
 }
 
 function expand(percent) {
@@ -15,10 +19,6 @@ function expand(percent) {
     bottom.position.y = -4 * percent;
 }
 
-function zoom() {
-    
-}
-
 function rotate(degree) {
   //  laptopFull.rotation.x = degree;
     laptopFull.rotation.y = degree + Math.PI / 2;
@@ -27,6 +27,5 @@ function rotate(degree) {
 function select(id, laptop) {
     var item = laptop.getPartById(id);
     highlight(item);
-    zoom(item);
     display(item);
 }
