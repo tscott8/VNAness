@@ -4,7 +4,7 @@ function resetLaptop()
     rotate(0);
     controls.expand = 0;
     controls.rotation = 0;
-    controls.fieldOfView = 40;
+    effectController.fieldOfView = 40;
 }
 
 function expand(percent) {
