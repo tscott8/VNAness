@@ -29,3 +29,49 @@ function select(id, laptop) {
     highlight(item);
     display(item);
 }
+
+//onclick events
+function onDocumentMouseDown( event ) {
+	//ignore random mouse twitches
+	event.preventDefault();
+	//get the mouse postition
+	var mouseX = (event.clientX / window.innerWidth)*2-1;
+	var mouseY = -(event.clientY /window.innerHeight)*2+1;
+	//create a 3d vector to shoot into the 3d space
+	var vector = new THREE.Vector3( mouseX, mouseY, 0.5 );
+	//create a new projector
+	projector = new THREE.Projector();
+	//project out from camera position
+	projector.unprojectVector( vector, camera );
+	//create a raycaster that excludes the camera
+	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+	//calculate the intersections
+	var intersects = raycaster.intersectObjects( laptopFull.children, true  );
+
+	//unselect the last item
+	unselectLast();
+	console.log(savePosition);
+	//select the new item
+	if (intersects.length > 0 && selected == null) {
+		//save the color of the intersected object
+		highlight = intersects[ 0 ].object.material.color.getHex();
+		console.log(highlight);
+		//toggle change to show that the intersected object is selected
+		intersects[ 0 ].object.material.color.setHex(0xFF8C00);
+		//store and log what is selected
+		selected = laptopFull.getObjectById(intersects[ 0 ].object.id, true);
+		console.log(selected.parent.parent.parent.name);
+	}
+	getDescription(selected.parent.parent.parent.name);
+}
+
+//unselect
+function unselectLast() {
+	if(selected != null){
+		selected.material.color.setHex(highlight);
+		selected = null;
+		document.getElementById('descriptions').style.visibility = "hidden";
+	}
+}
+
