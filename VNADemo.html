@@ -1,32 +1,8 @@
 <html>
 <head>
-	<title>VonNeumann demo app</title>
-	<style>
-		body { margin: 0; }
-		canvas { width: 100%; height: 100% }
-        #descriptions {
-            position: relative;
-            left: 0px;
-            top: 75%;
-            width: 50%;
-            height: auto;
-            background-color: rgb(10, 3, 10);
-            color: white;
-            z-index: 10;
-            visibility: hidden;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
-	</style>
-</head>
-<body>
-
-	<div id="ThreeJS" style="position: absolute; left:0px; top:0px">
-    </div>
-    <div style="width: 100%; height:25%; position: absolute; left: 0px; top: 45%;">
-        <div id="descriptions"></div>
-    </div>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>        
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
 	<script src='threeJS/three.js'></script>
 	<script src='threeJS/OrbitControls.js'></script>
 	<script src='threeJS/Projector.js'></script>
@@ -38,6 +14,78 @@
 	<script src='./controls.js'></script>
 	<script src='./descriptions.js'></script>
     <!--<script src='threeJS/info.js'></script>-->
+	<title>VonNeumann demo app</title>
+	<style>
+		body { margin: 0; }
+		canvas { width: 100%; height: 100% }
+        #descriptions {
+/*            position: relative;*/
+            left: 0;
+			bottom: 0;
+/*            top: 75%;*/
+            width: 50%;
+            height: auto;
+/*
+            background-color: rgb(10, 3, 10);
+            color: white;*/
+/*            z-index: 10;*/
+            visibility: hidden;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+		.modal-header, .modal-body, .modal-footer, .alert-info, .btn {
+			padding:9px 15px;
+    		border:1px solid #eee;
+    		background-color: #000000;
+			border-radius: 5px;
+			color: white;
+		}
+	
+	</style>
+</head>
+<body>
+
+   	<div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
+	
+	<script> 
+        $(document).ready(function () { 
+         $('#infoModal').modal('show'); 
+         }); 
+    </script> 
+
+	
+	<div class="modal fade" id="infoModal" role="dialog"> 
+		 <div class="modal-dialog"> 
+			 <div class="modal-content "> 
+				 <div class="modal-header"> 
+					 <button type="button" class="close" data-dismiss="modal">&times;</button> 
+					 <h4 class="modal-title">The Vonn Neumann Architecture Demo</h4> 
+				 </div> 
+				 <div class="modal-body text-justify"> 
+					 <p>
+					 	This is a 3D representation of a typical laptop. It is designed to be a teaching tool
+						for those who want to understand the different parts of a computer. <br><br>
+						Controls:<br>
+						 -click on an object to select it, this will give a description of what that object is.<br>
+						 -in the upper right corner you will find controls to change the field of view, rotation,
+						 	expansion, and reset the laptop.<br><br>
+						 
+						For more information see the github repository <a href="https://github.com/tscott8/VNAness">here</a>
+					 </p> 
+				 </div> 
+				 <div class="modal-footer"> 
+					 <button type="button" class="btn btn-default" data-dismiss="modal">GO NUTS!</button> 
+				 </div> 
+			 </div> 
+		</div>
+	</div>
+	
+
+	
+	 <div style="width: 100%; height:25%; position: absolute; left: 0px; bottom:0;">
+        <div id="descriptions" class="alert alert-info"></div>
+    </div>
 	<script type="text/javascript">
 
 		//things to hold things
@@ -231,6 +279,7 @@
 			//controls.update();
 		}
 	
-</script>
+	</script>
+
 </body>
 </html>
