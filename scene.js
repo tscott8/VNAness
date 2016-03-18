@@ -1,18 +1,16 @@
 //setup all the lighting
 function threePointLight() {
-	var x;
-	var y;
-	var z;
+	var x, y, z;
 	x = y = z = 3;
 	var intense =.5;
 	var color = 0xffffff;
 
 	var directionalLight = new THREE.DirectionalLight( color );
 	directionalLight.position.set(x, y, z).normalize();
-	directionalLight.intensity = intense;
-	scene.add( directionalLight );//top
+	directionalLight.intensity = intense/2;
+	scene.add(directionalLight);//top
 
-	directionalLight = new THREE.DirectionalLight( color );
+	directionalLight = new THREE.DirectionalLight(color);
 	directionalLight.position.set(-x, -y, -z).normalize();
 	directionalLight.intensity = intense;
 	scene.add(directionalLight);//bottom
@@ -78,7 +76,7 @@ function init() {
 	//set up renderer
 	renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true} );
 	//renderer.shadowMapEnabled = true;
-	renderer.setClearColor( 0xb2b2b2, 1 );
+	renderer.setClearColor( 0x2f2f2f, 1 );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.sortObjects = false;
@@ -96,16 +94,6 @@ function animate() {
 
 	//expand control
 	expand(controls.expand);
-	// reset control
-	// 		if(controls.reset == true)
-	// 		{
-	// 			expand(0);
-	// 			rotate(0);
-	// 			//controls.reset = false;
-	// 			controls.expand = 0;
-	// 			controls.rotation = 0;
-	// 		}
-	//rotate control
 	rotate(controls.rotation);
 
 	// field of view controller updater
