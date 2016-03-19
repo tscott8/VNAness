@@ -52,17 +52,17 @@ function onDocumentMouseDown( event ) {
 
 	//unselect the last item
 	unselectLast();
-	console.log(savePosition);
 	//select the new item
 	if (intersects.length > 0 && selected == null) {
 		//save the color of the intersected object
 		highlight = intersects[ 0 ].object.material.color.getHex();
-		console.log(highlight);
+		//console.log(highlight);
 		//toggle change to show that the intersected object is selected
 		intersects[ 0 ].object.material.color.setHex(0x78CBFD);
+		//intersects[0].object.parent.parent.parent.position.x += 10;
 		//store and log what is selected
 		selected = laptopFull.getObjectById(intersects[ 0 ].object.id, true);
-		console.log(selected.parent.parent.parent.name);
+		console.log(selected.parent.parent);
 	}
 	getDescription(selected.parent.parent.parent.name);
 }
@@ -70,9 +70,13 @@ function onDocumentMouseDown( event ) {
 //unselect
 function unselectLast() {
 	if(selected != null){
-		selected.material.color.setHex(highlight);
-		selected = null;
+		selected.parent.parent.parent.position.x = 0;
+		selected.parent.parent.rotation.x = 0;
+		selected.parent.parent.rotation.y = 0;
+		selected.parent.parent.rotation.z= 0;
+		selected.material.color.setHex(highlight);			
 		document.getElementById('descriptions').style.visibility = "hidden";
+		selected = null;
 	}
 }
 

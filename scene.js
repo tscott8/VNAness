@@ -95,6 +95,14 @@ function animate() {
 	//expand control
 	expand(controls.expand);
 	rotate(controls.rotation);
+	
+	
+	if(selected != null) {
+
+		selected.parent.parent.rotation.x += .01;
+		selected.parent.parent.rotation.z += -.01;
+		
+	}
 
 	// field of view controller updater
 	camera.fov = effectController.fieldOfView;
