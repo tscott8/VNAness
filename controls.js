@@ -6,6 +6,8 @@ function resetLaptop() {
 	controls.expand = 0;
 	controls.rotation = 0;
 	effectController.fieldOfView = 40;
+    effectController.expand = 0;
+    effectController.rotation = 0;
 }
 
 //expands the pieces apart from each other based on a percent

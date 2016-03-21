@@ -56,9 +56,9 @@ function setupGui() {
 		this.reset = function() { resetLaptop() }
 	}  
 
-	gui.add(effectController, "fieldOfView", 1.0, 150.0);
-	gui.add(controls, 'rotation', 0.0, 10.0);
-	gui.add(controls, 'expand', 0, 5);
+	gui.add(effectController, "fieldOfView", 1.0, 150.0).listen();
+	gui.add(controls, 'rotation', 0.0, 10.0).listen();
+	gui.add(controls, 'expand', 0, 5).listen();
 	gui.add(controls, 'reset').name("Reset Laptop Parameters");
 }
 
@@ -106,7 +106,7 @@ function animate() {
 
 	// field of view controller updater
 	camera.fov = effectController.fieldOfView;
-	camera.updateProjectionMatrix();			
+	camera.updateProjectionMatrix();
 	// must do these two statements
 	renderer.render( scene, camera ); 
 	//controls.update();
