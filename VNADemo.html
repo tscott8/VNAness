@@ -10,6 +10,7 @@
 	<script src='threeJS/OBJMTLLoader.js'></script>
 	<script src='threeJS/MTLLoader.js'></script>
 	<script type="text/javascript" src="threeJS/dat.gui.js"></script>
+    <script src="threeJS/THREEx.KeyboardState.js"></script>
 	<script src='./objects.js'></script>
 	<script src='./controls.js'></script>
 	<script src='./descriptions.js'></script>
@@ -78,7 +79,12 @@
 		//things to hold things
 		var scene, camera, renderer, projector, highlight;
         
-      //object
+        //standard global variables
+        var clock = new THREE.Clock();
+        var keyboard = new THREEx.KeyboardState();
+
+        
+        //object
 		var topp = new THREE.Object3D();
      	var motherboard = new THREE.Object3D();
 		var cpu = new THREE.Object3D();
