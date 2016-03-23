@@ -67,9 +67,15 @@ function init() {
 	//create a scene
 	scene = new THREE.Scene();
 	//setup the camera
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-	camera.position.z = -30;
-	camera.position.y = 5;
+    var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+	scene.add(camera);
+	camera.position.set(0,5,-35);
+	camera.lookAt(scene.position);	
+//	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+//	camera.position.z = -30;
+//	camera.position.y = 5;
 	//load objects and light em up
 	loadObject();
 	threePointLight();
@@ -86,7 +92,25 @@ function init() {
 	controls.target.set(0,0,0);
 	//add an event listener for mouse clicks
 	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+
+// create an array with six textures for a cool cube
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+	var MovingCamMat = new THREE.MeshFaceMaterial(materialArray);
+	var MovingCamGeom = new THREE.CubeGeometry( .01, .01, .01, .01, .01, .01, materialArray );
+	MovingCam = new THREE.Mesh( MovingCamGeom, MovingCamMat );
+	MovingCam.position.set(0, 5, -35);
+	scene.add( MovingCam );	
+	
 }
+
+var MovingCam;
 
 // This function is called many times a second.  You do anything that needs to be updated, changed, moved here
 function animate() {
@@ -97,7 +121,7 @@ function animate() {
 	//expand control
 	expand(controls.expand);
 	rotate(controls.rotation);
-	
+	update();
 	
 	if(selected != null) {
 
@@ -112,4 +136,56 @@ function animate() {
 	// must do these two statements
 	renderer.render( scene, camera ); 
 	//controls.update();
+}
+
+function update()
+{
+	var delta = clock.getDelta(); // seconds.
+	var moveDistance = 200 * delta; // 200 pixels per second
+	var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
+	
+	// local transformations
+
+	// move forwards/backwards/left/right
+	if ( keyboard.pressed("W") )
+		MovingCam.translateZ( -moveDistance );
+	if ( keyboard.pressed("S") )
+		MovingCam.translateZ(  moveDistance );
+	if ( keyboard.pressed("Q") )
+		MovingCam.translateX( -moveDistance );
+	if ( keyboard.pressed("E") )
+		MovingCam.translateX(  moveDistance );	
+
+	// rotate left/right/up/down
+    //Unsure as to how to use the number pad here or 
+    //the arrow keys
+	var rotation_matrix = new THREE.Matrix4().identity();
+	if ( keyboard.pressed("A") )
+		MovingCam.rotateOnAxis( new THREE.Vector3(0,1,0), rotateAngle);
+	if ( keyboard.pressed("D") )
+		MovingCam.rotateOnAxis( new THREE.Vector3(0,1,0), -rotateAngle);
+	if ( keyboard.pressed("R") )
+		MovingCam.rotateOnAxis( new THREE.Vector3(1,0,0), rotateAngle);
+	if ( keyboard.pressed("F") )
+		MovingCam.rotateOnAxis( new THREE.Vector3(1,0,0), -rotateAngle);
+	
+	if ( keyboard.pressed("Z") )
+	{
+		MovingCam.position.set(0,5,-35);
+		MovingCam.rotation.set(0,0,0);
+	}
+	
+    //if you set this to (0,5,-35) then it bounces when you
+    //move it. 
+	var relativeCameraOffset = new THREE.Vector3(0,50,200);
+
+	var cameraOffset = relativeCameraOffset.applyMatrix4( MovingCam.matrixWorld );
+
+	camera.position.x = cameraOffset.x;
+	camera.position.y = cameraOffset.y;
+	camera.position.z = cameraOffset.z;
+	camera.lookAt( MovingCam.position );
+	
+	//camera.updateMatrix();
+	//camera.updateProjectionMatrix();
 }
