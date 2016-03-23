@@ -28,6 +28,27 @@
 /** @namespace */
 var THREEx	= THREEx 		|| {};
 
+
+
+/**
+ * to process the keyboard dom event
+*/
+THREEx.KeyboardState.prototype._onKeyChange	= function(event, pressed)
+{
+	// log to debug
+	//console.log("onKeyChange", event, pressed, event.keyCode, event.shiftKey, event.ctrlKey, event.altKey, event.metaKey)
+
+	// update this.keyCodes
+	var keyCode		= event.keyCode;
+	this.keyCodes[keyCode]	= pressed;
+
+	// update this.modifiers
+	this.modifiers['shift'] = event.shiftKey;
+	this.modifiers['ctrl']	= event.ctrlKey;
+	this.modifiers['alt']	= event.altKey;
+	this.modifiers['meta']	= event.metaKey;
+}
+
 /**
  * - NOTE: it would be quite easy to push event-driven too
  *   - microevent.js for events handling
@@ -71,25 +92,6 @@ THREEx.KeyboardState.ALIAS	= {
 	'pagedown'	: 34,
 	'tab'		: 9
 };
-
-/**
- * to process the keyboard dom event
-*/
-THREEx.KeyboardState.prototype._onKeyChange	= function(event, pressed)
-{
-	// log to debug
-	//console.log("onKeyChange", event, pressed, event.keyCode, event.shiftKey, event.ctrlKey, event.altKey, event.metaKey)
-
-	// update this.keyCodes
-	var keyCode		= event.keyCode;
-	this.keyCodes[keyCode]	= pressed;
-
-	// update this.modifiers
-	this.modifiers['shift']= event.shiftKey;
-	this.modifiers['ctrl']	= event.ctrlKey;
-	this.modifiers['alt']	= event.altKey;
-	this.modifiers['meta']	= event.metaKey;
-}
 
 /**
  * query keyboard state to know if a key is pressed of not

@@ -91,6 +91,8 @@ function init() {
 // This function is called many times a second.  You do anything that needs to be updated, changed, moved here
 function animate() {
 	requestAnimationFrame( animate );
+    
+    getKeyChange();
 
 	//expand control
 	expand(controls.expand);

@@ -26,12 +26,6 @@ function rotate(degree) {
   //  laptopFull.rotation.x = degree;
   laptopFull.rotation.y = degree + Math.PI / 2;
 }
-//
-//function select(id, laptop) {
-//	var item = laptop.getPartById(id);
-//	highlight(item);
-//	display(item);
-//}
 
 //onclick events
 function onDocumentMouseDown( event ) {
@@ -82,3 +76,9 @@ function unselectLast() {
 	}
 }
 
+//Get Key Change
+function getKeyChange() {
+    /*if (keyboard.pressed('w')) {
+        camera1.position.y += 15;
+    } */  
+}
