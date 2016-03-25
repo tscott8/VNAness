@@ -76,10 +76,3 @@ function unselectLast() {
 		selected = null;
 	}
 }
-
-//Get Key Change
-function getKeyChange() {
-    /*if (keyboard.pressed('w')) {
-        camera1.position.y += 15;
-    } */  
-}

@@ -9,9 +9,7 @@
 	<script src='threeJS/OBJLoader.js'></script>
 	<script src='threeJS/OBJMTLLoader.js'></script>
 	<script src='threeJS/MTLLoader.js'></script>
-    <script src='threeJS/THREEx.KeyboardState.js'></script>
 	<script type="text/javascript" src="threeJS/dat.gui.js"></script>
-    <script src="threeJS/THREEx.KeyboardState.js"></script>
 	<script src='./objects.js'></script>
 	<script src='./controls.js'></script>
 	<script src='./descriptions.js'></script>
@@ -82,7 +80,6 @@
         
         //standard global variables
         var clock = new THREE.Clock();
-        var keyboard = new THREEx.KeyboardState();
 
         
         //object
@@ -97,7 +94,6 @@
 		var bus = new THREE.Object3D();
 		var bottom = new THREE.Object3D();
 		var laptopFull = new THREE.Object3D();
-        var keyboard = THREEx.KeyboardState();
         
 		//gui
 		var gui = new dat.GUI();

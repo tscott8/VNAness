@@ -39,9 +39,9 @@ function loadObject() {
 	ssd = LoadSSD(.4,0,0);
 	battery = LoadBattery(.45,0,-.1);
 	dvd = LoadDVD(.4,90,-.15);
-   //bus = LoadBus(1,0,1);
+   bus = LoadBus(.4,Math.PI / 2,-.25);
    bottom = LoadBottom(.875,0,-.5);			
-   laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd/*,bus*/,bottom);
+   laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
    laptopFull.rotation.y = Math.PI / 2;
    laptopFull.position.y = -2;
    scene.add(laptopFull);			
@@ -116,12 +116,12 @@ var MovingCam;
 function animate() {
 	requestAnimationFrame( animate );
     
-    getKeyChange();
+    //getKeyChange();
 
 	//expand control
 	expand(controls.expand);
 	rotate(controls.rotation);
-	update();
+	//update();
 	
 	if(selected != null) {
 
@@ -147,7 +147,7 @@ function update()
 	// local transformations
 
 	// move forwards/backwards/left/right
-	if ( keyboard.pressed("W") )
+	/*if ( keyboard.pressed("W") )
 		MovingCam.translateZ( -moveDistance );
 	if ( keyboard.pressed("S") )
 		MovingCam.translateZ(  moveDistance );
@@ -173,7 +173,7 @@ function update()
 	{
 		MovingCam.position.set(0,5,-35);
 		MovingCam.rotation.set(0,0,0);
-	}
+	}*/
 	
     //if you set this to (0,5,-35) then it bounces when you
     //move it. 
@@ -184,7 +184,7 @@ function update()
 	camera.position.x = cameraOffset.x;
 	camera.position.y = cameraOffset.y;
 	camera.position.z = cameraOffset.z;
-	camera.lookAt( MovingCam.position );
+	//camera.lookAt( MovingCam.position );
 	
 	//camera.updateMatrix();
 	//camera.updateProjectionMatrix();
