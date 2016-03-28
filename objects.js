@@ -111,7 +111,6 @@ function LoadDVD(scale, rotate, pos) {
 		function (obj) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
 			obj.scale.y = .2;
-			obj.rotation.y = rotate * Math.PI/180;
 			obj.position.y = pos;
 			obj.position.z = -4.1;
 			obj.position.x = .4;
