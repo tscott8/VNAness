@@ -63,8 +63,6 @@ function LoadRAM(scale, rotate, pos) {
 	loader.load("objects/ram.obj", "objects/ram.mtl",
 		function (obj) {
 			obj.scale.x = obj.scale.y = obj.scale.z = scale;
-			obj.rotation.z = 90 * Math.PI / 180;
-			obj.rotation.x = 90 * Math.PI / 180;
 			obj.rotation.y = rotate;
 			obj.position.y = pos;
 			obj.position.x = 2.85;
