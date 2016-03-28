@@ -38,7 +38,7 @@ function loadObject() {
 	ram = LoadRAM(.25,0,-.25);
 	ssd = LoadSSD(.4,0,0);
 	battery = LoadBattery(.45,0,-.1);
-	dvd = LoadDVD(.4,90,-.15);
+	dvd = LoadDVD(.4,0,-.15);
    bus = LoadBus(.4, 0,-.25);
    bottom = LoadBottom(.875,0,-.5);			
    laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
