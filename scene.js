@@ -129,7 +129,7 @@ function init() {
 	//set up renderer
 	renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true} );
 	//renderer.shadowMapEnabled = true;
-	renderer.setClearColor( 0x2f2f2f, 1 );
+	renderer.setClearColor( 0x191919, 1 );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.sortObjects = false;
