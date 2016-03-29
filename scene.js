@@ -2,31 +2,78 @@
 function threePointLight() {
 	var x, y, z;
 	x = y = z = 3;
-	var intense =.5;
-	var color = 0xffffff;
+	var intense =.4;
+	var color = 0x404040;
 
 	var directionalLight = new THREE.DirectionalLight( color );
+	directionalLight.position.set(-x, y, -z).normalize();
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//topleftfront
+
+	directionalLight = new THREE.DirectionalLight( color );
+	directionalLight.position.set(0, y, 0).normalize();
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//topcenter
+
+	directionalLight = new THREE.DirectionalLight( color );
+	directionalLight.position.set(x, y, -z).normalize();
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//toprightfront
+	
+	directionalLight = new THREE.DirectionalLight( color );
 	directionalLight.position.set(x, y, z).normalize();
-	directionalLight.intensity = intense/2;
-	scene.add(directionalLight);//top
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//toprightback
+
+	directionalLight = new THREE.DirectionalLight( color );
+	directionalLight.position.set(-x, y, z).normalize();
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//topleftback
+
 
 	directionalLight = new THREE.DirectionalLight(color);
 	directionalLight.position.set(-x, -y, -z).normalize();
 	directionalLight.intensity = intense;
-	scene.add(directionalLight);//bottom
-
+	scene.add(directionalLight);//bottomleftfront
+	
 	directionalLight = new THREE.DirectionalLight(color);
-	directionalLight.position.set(-x, 0, 0).normalize();
+	directionalLight.position.set(0, -y, 0).normalize();
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//bottomcenter
+	
+	directionalLight = new THREE.DirectionalLight(color);
+	directionalLight.position.set(x, -y, -z).normalize();
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//bottomrightfront
+
+	directionalLight = new THREE.DirectionalLight( color );
+	directionalLight.position.set(x, -y, z).normalize();
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//bottomrightback
+
+	directionalLight = new THREE.DirectionalLight( color );
+	directionalLight.position.set(-x, -y, z).normalize();
+	directionalLight.intensity = intense;
+	scene.add(directionalLight);//bottomleftback
+	
+	directionalLight = new THREE.DirectionalLight(color);
+	directionalLight.position.set(-x, 0, -z).normalize();
 	directionalLight.intensity = intense;
 	scene.add(directionalLight); //left
 
 	directionalLight = new THREE.DirectionalLight(color);
-	directionalLight.position.set(x, 0, 0).normalize();
+	directionalLight.position.set(x, 0, -z).normalize();
 	directionalLight.intensity = intense;
 	scene.add(directionalLight); //right
-
-	var light = new THREE.HemisphereLight( color, 0x000000, intense );
+	
+//	var spotLight = new THREE.SpotLight( color, intense, 100 );
+//	spotLight.position.copy(camera.position).normalize();
+//	spotLight.intensity = intense;
+//	scene.add(spotLight); //CAMERA
+	
+	var light = new THREE.HemisphereLight( color, 0x000000, intense);
 	scene.add( light );
+	
 }
 
 //load all the pieces of the laptop, add them to a container, and add them to the scene
@@ -39,12 +86,12 @@ function loadObject() {
 	ssd = LoadSSD(.4,0,0);
 	battery = LoadBattery(.45,0,-.1);
 	dvd = LoadDVD(.4,0,-.15);
-   bus = LoadBus(.4, 0,-.25);
-   bottom = LoadBottom(.875,0,-.5);			
-   laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
-   laptopFull.rotation.y = Math.PI / 2;
-   laptopFull.position.y = -2;
-   scene.add(laptopFull);			
+	bus = LoadBus(.4, 0,-.25);
+	bottom = LoadBottom(.875,0,-.5);			
+	laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
+	laptopFull.rotation.y = Math.PI / 2;
+	laptopFull.position.y = -2;
+	scene.add(laptopFull);			
 }
 
 //setup the GUI and controls
