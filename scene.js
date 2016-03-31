@@ -141,19 +141,19 @@ function init() {
 	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
 
-// create an array with six textures for a cool cube
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
-	var MovingCamMat = new THREE.MeshFaceMaterial(materialArray);
-	var MovingCamGeom = new THREE.CubeGeometry( .01, .01, .01, .01, .01, .01, materialArray );
-	MovingCam = new THREE.Mesh( MovingCamGeom, MovingCamMat );
-	MovingCam.position.set(0, 5, -35);
-	scene.add( MovingCam );	
+//// create an array with six textures for a cool cube
+//	var materialArray = [];
+//	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+//	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+//	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+//	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+//	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+//	materialArray.push(new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( 'objects/textures/gpu.png' ) }));
+//	var MovingCamMat = new THREE.MeshFaceMaterial(materialArray);
+//	var MovingCamGeom = new THREE.CubeGeometry( .01, .01, .01, .01, .01, .01, materialArray );
+//	MovingCam = new THREE.Mesh( MovingCamGeom, MovingCamMat );
+//	MovingCam.position.set(0, 5, -35);
+//	scene.add( MovingCam );	
 	
 }
 
