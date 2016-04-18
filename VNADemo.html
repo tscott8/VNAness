@@ -1,9 +1,9 @@
 <html>
 <head>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>        
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
-	<script src='threeJS/three.js'></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src='threeJS/three.min.js'></script>
 	<script src='threeJS/OrbitControls.js'></script>
 	<script src='threeJS/Projector.js'></script>
 	<script src='threeJS/OBJLoader.js'></script>
@@ -36,21 +36,21 @@
     		background-color: #000000;
 			border-radius: 5px;
 			color: white;
-		}	
+		}
 	</style>
 </head>
 <body>
 
    <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
-	<script> $(document).ready(function () { $('#infoModal').modal('show'); }); </script> 
-	<div class="modal fade" id="infoModal" role="dialog"> 
-		 <div class="modal-dialog"> 
-			 <div class="modal-content "> 
-				 <div class="modal-header"> 
-					 <button type="button" class="close" data-dismiss="modal">&times;</button> 
-					 <h4 class="modal-title">The Vonn Neumann Architecture Demo</h4> 
-				 </div> 
-				 <div class="modal-body text-justify"> 
+	<script> $(document).ready(function () { $('#infoModal').modal('show'); }); </script>
+	<div class="modal fade" id="infoModal" role="dialog">
+		 <div class="modal-dialog">
+			 <div class="modal-content ">
+				 <div class="modal-header">
+					 <button type="button" class="close" data-dismiss="modal">&times;</button>
+					 <h4 class="modal-title">The Vonn Neumann Architecture Demo</h4>
+				 </div>
+				 <div class="modal-body text-justify">
 					 <p>
 					 	This is a 3D representation of a typical laptop. It is designed to be a teaching tool
 						for those who want to understand the different parts of a computer. <br><br>
@@ -58,18 +58,18 @@
 						 -click on an object to select it, this will give a description of what that object is.<br>
 						 -in the upper right corner you will find controls to change the field of view, rotation,
 						 	expansion, and reset the laptop.<br><br>
-						 
+
 						For more information see the github repository <a href="https://github.com/tscott8/VNAness">here</a>
-					 </p> 
-				 </div> 
-				 <div class="modal-footer"> 
-					 <button type="button" class="btn btn-default" data-dismiss="modal">GO NUTS!</button> 
-				 </div> 
-			 </div> 
+					 </p>
+				 </div>
+				 <div class="modal-footer">
+					 <button type="button" class="btn btn-default" data-dismiss="modal">GO NUTS!</button>
+				 </div>
+			 </div>
 		</div>
 	</div>
 
-	
+
 	<div style="width: 100%; height:25%; position:absolute;">
       <div id="descriptions" class="alert alert-info"></div>
    </div>
@@ -77,11 +77,11 @@
 
 		//things to hold things
 		var scene, camera, renderer, projector, highlight;
-        
+
         //standard global variables
         var clock = new THREE.Clock();
 
-        
+
         //object
 		var topp = new THREE.Object3D();
      	var motherboard = new THREE.Object3D();
@@ -94,13 +94,13 @@
 		var bus = new THREE.Object3D();
 		var bottom = new THREE.Object3D();
 		var laptopFull = new THREE.Object3D();
-        
+
 		//gui
 		var gui = new dat.GUI();
-		
+
 		//nothing is currently selected
 		var selected = null;
-		
+
 		//run the program
 		init();
 		setupGui();
