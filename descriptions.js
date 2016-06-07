@@ -11,8 +11,8 @@ var descriptions = {
 };
 
 function getDescription(part) {
-    if (selected != null) {
+    if (selected !== null) {
         document.getElementById('descriptions').style.visibility = "visible";
         document.getElementById('descriptions').innerHTML = descriptions[part];
-    }         
+    }
 }
