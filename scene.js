@@ -2,7 +2,7 @@
 function threePointLight() {
 	var x, y, z;
 	x = y = z = 3;
-	var intense =.4;
+	var intense = 0.4;
 	var color = 0x404040;
 
 	var directionalLight = new THREE.DirectionalLight( color );
@@ -78,16 +78,16 @@ function threePointLight() {
 
 //load all the pieces of the laptop, add them to a container, and add them to the scene
 function loadObject() {
-	topp = LoadTop(1,0,-.5);
-	motherboard = LoadMotherboard(.505,0,0);
-	cpu = LoadCPU(.85,0,-.25);
-	gpu = LoadGPU(.85,0,-2.25);
-	ram = LoadRAM(.25,0,-.25);
-	ssd = LoadSSD(.4,0,0);
-	battery = LoadBattery(.45,0,-.1);
-	dvd = LoadDVD(.4,0,-.15);
-	bus = LoadBus(.4, 0,-.25);
-	bottom = LoadBottom(.875,0,-.5);
+	topp = LoadTop(1,0,-0.5);
+	motherboard = LoadMotherboard(0.505,0,0);
+	cpu = LoadCPU(0.85,0,-0.25);
+	gpu = LoadGPU(0.85,0,-2.25);
+	ram = LoadRAM(0.25,0,-0.25);
+	ssd = LoadSSD(0.4,0,0);
+	battery = LoadBattery(0.45,0,-0.1);
+	dvd = LoadDVD(0.4,0,-0.15);
+	bus = LoadBus(0.4, 0,-0.25);
+	bottom = LoadBottom(0.875,0,-0.5);
 	laptopFull.add(topp,motherboard,cpu,gpu,ram,ssd,battery,dvd,bus,bottom);
 	laptopFull.rotation.y = Math.PI / 2;
 	laptopFull.position.y = -2;
@@ -100,8 +100,8 @@ function setupGui() {
 	controls = new function() {
 		this.rotation = 0;
 		this.expand = 0;
-		this.reset = function() { resetLaptop() }
-	}
+		this.reset = function() { resetLaptop(); };
+	};
 
 	gui.add(effectController, "fieldOfView", 1.0, 150.0).listen();
 	gui.add(controls, 'rotation', 0.0, 10.0).listen();
@@ -170,10 +170,10 @@ function animate() {
 	rotate(controls.rotation);
 	//update();
 
-	if(selected != null) {
+	if(selected !== null) {
 
-		selected.parent.parent.rotation.x += .01;
-		selected.parent.parent.rotation.z += -.01;
+		selected.parent.parent.rotation.x += 0.01;
+		selected.parent.parent.rotation.z += -0.01;
 
 	}
 
@@ -182,7 +182,7 @@ function animate() {
 	camera.updateProjectionMatrix();
 	// must do these two statements
 	renderer.render( scene, camera );
-	var winResize = new THREEx.WindowResize(renderer, camera)
+	var winResize = new THREEx.WindowResize(renderer, camera);
 	//controls.update();
 }
 

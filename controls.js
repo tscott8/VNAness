@@ -50,7 +50,7 @@ function onDocumentMouseDown( event ) {
 	//unselect the last item
 	unselectLast();
 	//select the new item
-	if (intersects.length > 0 && selected == null) {
+	if (intersects.length > 0 && selected === null) {
 		//save the color of the intersected object
 		highlight = intersects[ 0 ].object.material.color.getHex();
 		//console.log(highlight);
@@ -66,12 +66,12 @@ function onDocumentMouseDown( event ) {
 
 //unselect
 function unselectLast() {
-	if(selected != null){
+	if(selected !== null){
 		selected.parent.parent.parent.position.x = 0;
 		selected.parent.parent.rotation.x = 0;
 		selected.parent.parent.rotation.y = 0;
 		selected.parent.parent.rotation.z= 0;
-		selected.material.color.setHex(highlight);			
+		selected.material.color.setHex(highlight);
 		document.getElementById('descriptions').style.visibility = "hidden";
 		selected = null;
 	}
